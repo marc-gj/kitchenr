@@ -1,0 +1,32 @@
+{
+  "name": "kitchener",
+  "version": "1.0.0",
+  "description": "Kitchener Backend",
+  "main": "server.js",
+  "engines": {
+    "node": "8.1.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marc Gaston-Johnston",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.11.1",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "typescript": "^2.4.1"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
