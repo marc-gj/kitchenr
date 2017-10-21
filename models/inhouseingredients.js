@@ -26,7 +26,7 @@ const inHouseIngredientSchema = mongoose.Schema({
 		},
 		inHouseIngredients: {
 			_id: {
-				type: Schema.Types.ObjectId,
+				type: mongoose.Schema.Types.ObjectId,
 				ref: 'InHouseIngredients'
 			},
 			amount: {
