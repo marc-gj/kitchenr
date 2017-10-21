@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const InHouseIngredient = require('../models/inhouseingredient');
 
 // Create House ingredient
-router.post('/newinhouseingredient', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+router.post('/newinhouseingredient', passport.authenticate('jwt', {session: false}), (req, res) => {
 	let newInHouseIngredient = new InHouseIngredient({
 		name: req.body.name,
 		ingredients: [{
