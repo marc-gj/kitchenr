@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 //const config = require('../config/database');
-const InHouseIngredient = require('../models/inhouseingredient');
+//const InHouseIngredient = require('../models/inhouseingredient');
 
 // Create House ingredient
 router.post('/newinhouseingredient', passport.authenticate('jwt', {session: false}), (req, res) => {
