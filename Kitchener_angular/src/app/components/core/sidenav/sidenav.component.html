@@ -1,0 +1,15 @@
+<md-sidenav-container fxFill>
+  <md-sidenav #sidenav mode="side" opened="true" class="sidenav">
+    <md-list>
+      <md-list-item> 
+        <md-icon class="padding">assignment</md-icon>
+        <button md-button type="button">Stock</button> 
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <div class="content padding">
+    <router-outlet></router-outlet>
+  </div>
+
+</md-sidenav-container>
