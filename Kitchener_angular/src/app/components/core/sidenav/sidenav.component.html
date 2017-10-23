@@ -1,15 +1,20 @@
-<md-sidenav-container fxFill>
-  <md-sidenav #sidenav mode="side" opened="true" class="sidenav">
-    <md-list>
-      <md-list-item> 
-        <md-icon class="padding">assignment</md-icon>
-        <button md-button type="button">Stock</button> 
-      </md-list-item>
-    </md-list>
-  </md-sidenav>
+<mat-sidenav-container fxFill>
+  <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+    <mat-list>
+      <mat-list-item> 
+        
+				<button mat-button type="button" routerLink="/add-stock" class="sidenav-link" fxLayoutAlign="start center">
+					<div fxLayoutAlign="center center">
+						<mat-icon class="padding">assignment</mat-icon>
+						<span>Stock</span>
+					</div>
+					</button> 
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
 
   <div class="content padding">
     <router-outlet></router-outlet>
   </div>
 
-</md-sidenav-container>
+</mat-sidenav-container>

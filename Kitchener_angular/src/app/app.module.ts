@@ -5,11 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
-  MdSidenavModule,
-  MdToolbarModule,
-  MdIconModule,
-  MdButtonModule,
-  MdListModule
+	MatSidenavModule,
+	MatToolbarModule,
+	MatIconModule,
+	MatButtonModule,
+	MatListModule,
+	MatInputModule,
+	MatCardModule,
+	MatGridListModule,
+	MatSelectModule,
+	MatAutocompleteModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -21,26 +26,31 @@ import { StockDetailComponent } from './components/stock/stock-detail/stock-deta
 import { StockListComponent } from './components/stock/stock-list/stock-list.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidenavComponent,
-    ToolbarComponent,
-    AddStockComponent,
-    StockDetailComponent,
-    StockListComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FlexLayoutModule,
-    MdSidenavModule,
-    MdToolbarModule,
-    MdIconModule,
-    MdButtonModule,
-    MdListModule
-  ],
-  providers: [StockService],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		SidenavComponent,
+		ToolbarComponent,
+		AddStockComponent,
+		StockDetailComponent,
+		StockListComponent
+	],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		AppRoutingModule,
+		FlexLayoutModule,
+		MatSidenavModule,
+		MatToolbarModule,
+		MatIconModule,
+		MatButtonModule,
+		MatListModule,
+		MatInputModule,
+		MatCardModule,
+		MatGridListModule,
+		MatSelectModule,
+		MatAutocompleteModule
+	],
+	providers: [StockService],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

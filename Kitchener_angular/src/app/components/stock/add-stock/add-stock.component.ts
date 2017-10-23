@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from '../../../services/stock/stock.service';
 
 @Component({
-  selector: 'app-add-stock',
-  templateUrl: './add-stock.component.html',
-  styleUrls: ['./add-stock.component.css']
+	selector: 'app-add-stock',
+	templateUrl: './add-stock.component.html',
+	styleUrls: ['./add-stock.component.css']
 })
 export class AddStockComponent implements OnInit {
 
-  constructor(private stockService: StockService) { }
+	constructor(private stockService: StockService) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  getStock(id) {
-    this.stockService.getStockById(id);
-  }
+	getStock(id) {
+		this.stockService.getStockById(id);
+	}
 
 }
