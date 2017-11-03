@@ -69,11 +69,7 @@
 
 	<mat-form-field>
 		<mat-select placeholder="Unit of measure">
-			<mat-option value="g">g</mat-option>
-			<mat-option value="kg">kg</mat-option>
-			<mat-option value="oz">oz</mat-option>
-			<mat-option value="lb">lb</mat-option>
-			<mat-option value="Unit">Unit</mat-option>
+			<mat-option *ngFor="let item of stockFormInfo.unitsOfMeasure" value="item">{{item}}</mat-option>
 		</mat-select>
 	</mat-form-field>
 

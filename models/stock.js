@@ -88,3 +88,13 @@ module.exports.updateStockItem = function(id, updatedStockItem, callback) {
 	Stock.findByIdAndUpdate(id, updatedStockItem, callback);
 };
 
+module.exports.getStockFormInfo = function() {
+	let stockInfo = {
+		stockTypes: STOCK_TYPES,
+		unitsOfMeasure: UNITS_OF_MEASURE,
+		storageLocations: STORAGE_LOCATIONS,
+		pricedBy: PRICED_BY
+	};
+	return Promise.resolve(stockInfo);
+};
+

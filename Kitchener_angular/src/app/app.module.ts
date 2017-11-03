@@ -24,6 +24,7 @@ import { AddStockComponent } from './components/stock/add-stock/add-stock.compon
 import { StockService } from './services/stock/stock.service';
 import { StockDetailComponent } from './components/stock/stock-detail/stock-detail.component';
 import { StockListComponent } from './components/stock/stock-list/stock-list.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
 	declarations: [
@@ -38,6 +39,7 @@ import { StockListComponent } from './components/stock/stock-list/stock-list.com
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
+		HttpModule,
 		FlexLayoutModule,
 		MatSidenavModule,
 		MatToolbarModule,

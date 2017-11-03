@@ -120,4 +120,10 @@ router.patch('/updatestockitem', passport.authenticate('jwt', {session:false}), 
 	});
 });
 
+router.get('/getstockforminfo', (req, res) => {
+	Stock.getStockFormInfo().then(stock => {
+		res.json(stock);
+	});
+});
+
 module.exports = router;
