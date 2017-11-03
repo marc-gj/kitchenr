@@ -17,9 +17,9 @@ const stockSchema = mongoose.Schema({
 		type: Number, 
 		required: true
 	},
-	vendorId: {
+	supplierId: {
 		type: mongoose.Schema.Types.ObjectId, 
-		ref:'Vendor'
+		ref:'Supplier'
 	},
 	pricedBy: {
 		type: String, 
@@ -73,11 +73,11 @@ module.exports.addStock = function(newStockItem, callback) {
 
 // Gets list of stock items from db for display in data-table
 module.exports.getAllStock = function() {
-	return Stock.find().populate('vendor').select('name price vendor brand');
+	return Stock.find().populate('supplier').select('name price supplier brand');
 };
 
 module.exports.getStockDetails = function(id, callback) {
-	return Stock.findById(id, callback).populate('vendor');
+	return Stock.findById(id, callback).populate('supplier');
 };
 
 module.exports.deleteStockById = function(id, callback) {

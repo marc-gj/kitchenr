@@ -6,6 +6,17 @@ import 'rxjs/add/operator/toPromise';
 
 export class StockService {
 
+	id: number;
+	name: string;
+	brand: string;
+	price: number;
+	supplier: string;
+	purchasedBy: purchasedBy;
+	itemsPerCase: number;
+	quantityPerItem: number;
+	unitOfMeasure: unitOfMeasure;
+	type: stockType[];
+
 	private apiRoot: string = 'http://localhost:8080/stocks';
 
 	constructor(private http: Http) { }
@@ -35,24 +46,24 @@ export class StockService {
 }
 
 export class Stock {
-	id: number;
-	name: string;
-	brand: string;
-	price: number;
-	supplier: string;
-	purchasedBy: purchasedBy;
-	itemsPerCase: number;
-	quantityPerItem: number;
-	unitOfMeasure: unitOfMeasure;
-	type: stockType[];
+	private id: number;
+	private name: string;
+	private brand: string;
+	private price: number;
+	private supplier: string;
+	private purchasedBy: purchasedBy;
+	private itemsPerCase: number;
+	private quantityPerItem: number;
+	private unitOfMeasure: unitOfMeasure;
+	private type: stockType[];
+	private minStockLevel: number;
+	private maxStockLevel: number;
+	private stockParLevel: number;
+	private currentStockLevel: number;
+	private storageLocation: string;
 }
 
-export enum purchasedBy {
-	case = 'case',
-	weight = 'weight',
-	volume = 'volume',
-	unit = 'unit'
-}
+export enum purchasedBy { Case, Unit, Weight, Volume }
 
 export enum unitOfMeasure {
 	gram = 'g',

@@ -3,11 +3,11 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
-const Vendor = require('../models/vendor');
+const Supplier = require('../models/supplier');
 
-// Create Vendor
-router.post('/newvendor', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-	let newVendor = new Vendor({
+// Create supplier
+router.post('/newsupplier', passport.authenticate('jwt', {session: false}), (req, res) => {
+	let newSupplier = new Supplier({
 		name: req.body.name,
 		salesRep: {
 			name: req.body.salesRep.name,
@@ -22,17 +22,17 @@ router.post('/newvendor', passport.authenticate('jwt', {session: false}), (req, 
 		notes: req.body.notes    
 	});
 
-	Vendor.addVendor(newVendor, (err) => {
+	Supplier.addsupplier(newSupplier, (err) => {
 		if (err){
 			if (err.code === 11000){
 				res.json({
 					success: false,
-					msg:'Vendor already exists.'
+					msg:'supplier already exists.'
 				});
 			} else {
 				res.json({
 					success: false,
-					msg:'Failed create vendor.'
+					msg:'Failed create supplier.'
 				});
 			} 
 		} else {
@@ -45,40 +45,40 @@ router.post('/newvendor', passport.authenticate('jwt', {session: false}), (req, 
 
 });
 
-router.get('/getallvendors', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-	Vendor.getAllVendors().then(vendor => {
-		res.json(vendor);
+router.get('/getallsuppliers', passport.authenticate('jwt', {session:false}), (req, res) => {
+	Supplier.getAllsuppliers().then(supplier => {
+		res.json(supplier);
 	});
 });
 
-router.get('/getvendordetails', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+router.get('/getsupplierdetails', passport.authenticate('jwt', {session:false}), (req, res) => {
 	let _id = req.query;
-	Vendor.getVendorDetails(_id).then(vendor => {
-		res.json(vendor);
+	Supplier.getsupplierDetails(_id).then(supplier => {
+		res.json(supplier);
 	});
 });
 
-router.delete('/deletevendor', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+router.delete('/deletesupplier', passport.authenticate('jwt', {session:false}), (req, res) => {
 	console.log(req.query);
 	let _id = req.query;
     
-	Vendor.deleteVendorById(_id, (err, name) => {
+	Supplier.deletesupplierById(_id, (err, name) => {
 		if (err) {
 			res.json({
 				success: false,
-				msg: 'Failed to delete vendor'
+				msg: 'Failed to delete supplier'
 			});
 		} else {
 			res.json({
 				success: true,
-				msg: 'Vendor deleted'
+				msg: 'supplier deleted'
 			});
 		}
 	});
 });
 
-router.put('/updatevendor', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-	let updateVendor = {
+router.put('/updatesupplier', passport.authenticate('jwt', {session:false}), (req, res) => {
+	let updatesupplier = {
 		_id: req.body._id,
 		name: req.body.name,
 		salesRep: {
@@ -94,17 +94,17 @@ router.put('/updatevendor', passport.authenticate('jwt', {session:false}), (req,
 		notes: req.body.notes    
 	};
 
-	Vendor.updateVendorItem(updateVendor._id, updateVendor, (err) => {
+	Supplier.updatesupplierItem(updatesupplier._id, updatesupplier, (err) => {
 		if (err) {
 			console.log(err);
 			res.json({
 				success: false,
-				msg: 'Failed to update vendor.'
+				msg: 'Failed to update supplier.'
 			});
 		} else {
 			res.json({
 				success: true,
-				msg: 'Vendor updated successfully!'
+				msg: 'supplier updated successfully!'
 			});
 		}
 	});

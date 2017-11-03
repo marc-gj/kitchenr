@@ -25,6 +25,7 @@ import { StockService } from './services/stock/stock.service';
 import { StockDetailComponent } from './components/stock/stock-detail/stock-detail.component';
 import { StockListComponent } from './components/stock/stock-list/stock-list.component';
 import { HttpModule } from '@angular/http';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +34,8 @@ import { HttpModule } from '@angular/http';
 		ToolbarComponent,
 		AddStockComponent,
 		StockDetailComponent,
-		StockListComponent
+		StockListComponent,
+		TestComponent
 	],
 	imports: [
 		BrowserModule,

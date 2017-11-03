@@ -17,16 +17,16 @@ export class AddStockComponent implements OnInit {
 	constructor(private stockService: StockService) { }
 
 	ngOnInit() {
-		this.populateFormSelectInfo();
+		/* this.populateFormSelectInfo(); */
 	}
 
-	populateFormSelectInfo() {
+	/* populateFormSelectInfo() {
 		this.stockService
 			.getStockFormInfo()
 			.then(data => {
 				this.
 			});
-	}
+	} */
 
 	getStock(id) {
 		this.stockService.getStockById(id);
