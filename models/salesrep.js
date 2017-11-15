@@ -10,6 +10,11 @@ const salesRepSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+	supplier: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: 'Supplier'
+	},
 	contact: {
 		email: {
 			type: String,
