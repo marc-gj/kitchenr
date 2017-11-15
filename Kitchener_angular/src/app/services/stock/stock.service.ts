@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { Stock, purchasedBy, unitOfMeasure, stockType } from '../../classes/stock';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -39,63 +40,8 @@ export class StockService {
 	}
 
 	private handleError(error: any): Promise<any> {
-		console.error('An error occured', error);
+		console.error('An error occurred', error);
 		return Promise.reject(error.message || error);
 	}
 
-}
-
-export class Stock {
-	private id: number;
-	private name: string;
-	private brand: string;
-	private price: number;
-	private supplier: string;
-	private purchasedBy: purchasedBy;
-	private itemsPerCase: number;
-	private quantityPerItem: number;
-	private unitOfMeasure: unitOfMeasure;
-	private type: stockType[];
-	private minStockLevel: number;
-	private maxStockLevel: number;
-	private stockParLevel: number;
-	private currentStockLevel: number;
-	private storageLocation: string;
-}
-
-export enum purchasedBy { Case, Unit, Weight, Volume }
-
-export enum unitOfMeasure {
-	gram = 'g',
-	kilogram = 'kg',
-	ounce = 'oz',
-	pound = 'lb',
-	mililitre = 'ml',
-	litre = 'l',
-	teaspoon = 'tsp',
-	tablespoon = 'tbsp',
-	flOunce = 'fl.oz',
-	cup = 'cup',
-	unit = 'unit'
-}
-
-export enum stockType {
-	dry = 'Dry good',
-	frozen = 'Frozen',
-	fresh = 'Fresh produce',
-	poultry = 'Poultry',
-	fish = 'Fish',
-	shellFish = 'Shell fish',
-	beef = 'Beef',
-	pork = 'Pork',
-	lamb = 'Lamb',
-	condiment = 'Condiment',
-	oil = 'Oil',
-	sauce = 'Sauce',
-	dairy = 'Dairy',
-	seasoning = 'Seasoning',
-	fruit = 'Fruit',
-	vegetable = 'Vegetable',
-	pasta = 'Pasta',
-	sushi = 'Sushi'
 }
