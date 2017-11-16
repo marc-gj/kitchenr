@@ -1,35 +1,34 @@
 import { Injectable } from '@angular/core';
 import { SalesRep } from '../sales-rep/sales-rep.service';
 import { IContact } from '../../classes/Icontact';
-import { Headers, Http } from '@angular/http';
+import { Supplier } from '../../classes/supplier';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable()
 export class SupplierService {
 
-	constructor(http: Http) { }
+	private apiRoot = 'http://localhost/suppliers';
 
-	save(supplier: Supplier) {
+	private suppliersUrls = {
+		addSupplier: '/newsupplier',
+		getSupplierById: '/getsupplierdetails',
+		getSuppliers: '/getallsuppliers',
+		deleteSupplier: '/deletesupplier',
+		patchSupplier: '/updatesupplier'
+	};
+
+	constructor(private http: HttpClient) {
+
 	}
 
-}
-
-export class Supplier {
-
-	constructor(private _id: string,
-		private _name: string,
-		private _address: string,
-		private _contact: IContact,
-		private _salesRep: SalesRep) {}
-
-	/* get name(): string {
-		return this._name;
-	} */
-
-	set telephone(number: number) {
-		this._contact.telephone[this._contact.telephone.length - 1] = number;
+	getSuppliers (): Observable<Supplier[]> {
+		return this.http.get<Supplier[]>(this.apiRoot + this.suppliersUrls.getSuppliers)
+			.pipe(
+				catchError(this.handleError('getSuppliers', []))
+			);
 	}
 
-	get telephone(): number {
-		return this._contact.telephone[0];
-	}
 }

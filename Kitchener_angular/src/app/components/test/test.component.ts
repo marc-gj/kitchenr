@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Supplier, SupplierService } from '../../services/supplier/supplier.service';
+import { SupplierService } from '../../services/supplier/supplier.service';
 import { IContact } from '../../classes/Icontact';
 import { SalesRep } from '../../services/sales-rep/sales-rep.service';
 
