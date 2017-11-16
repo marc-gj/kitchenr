@@ -18,8 +18,9 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 		fax: req.body.fax,
 		notes: req.body.notes
 	});
-	
+
 	let newSalesRep = new SalesRep({
+		_id: new mongoose.Types.ObjectId(),
 		firstName: req.body._salesRep.firstName,
 		lastName: req.body._salesRep.lastName,
 		supplier: newSupplier._id,
@@ -30,7 +31,7 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 		},
 	});
 
-	Supplier.addsupplier(newSupplier, (err) => {
+	Supplier.addSupplier(newSupplier, newSalesRep, (err) => {
 		if (err) {
 			if (err.code === 11000) {
 				res.json({
@@ -44,53 +45,49 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 				});
 			}
 		} else {
-			res.json({
-				success: true,
-				msg: 'Created successfully!'
+			SalesRep.addSalesRep(newSalesRep, (err) => {
+				if (err) {
+					if (err.code === 11000) {
+						res.json({
+							success: false,
+							msg: 'This sales rep already exists.'
+						});
+					} else {
+						res.json({
+							success: false,
+							msg: 'Failed to create new sales rep.'
+						});
+					}
+				} else {
+					res.json({
+						success: true,
+						msg: 'Sales rep successfully saved!'
+					});
+				}
 			});
 		}
 	});
 
-	SalesRep.addSalesRep(newSalesRep, (err) => {
-		if (err) {
-			if (err.code === 11000) {
-				res.json({
-					success: false,
-					msg: 'This sales rep already exists.'
-				});
-			} else {
-				res.json({
-					success: false,
-					msg: 'Failed to create new sales rep.'
-				});
-			}
-		} else {
-			res.json({
-				success: true,
-				msg: 'Sales rep successfully saved!'
-			});
-		}
-	});
 });
 
 router.get('/getallsuppliers', passport.authenticate('jwt', { session: false }), (req, res) => {
-	Supplier.getAllsuppliers().then(supplier => {
+	Supplier.getAllSuppliers().then(supplier => {
 		res.json(supplier);
 	});
 });
 
 router.get('/getsupplierdetails', passport.authenticate('jwt', { session: false }), (req, res) => {
 	let _id = req.query;
-	Supplier.getsupplierDetails(_id).then(supplier => {
+	Supplier.getSupplierDetails(_id).then(supplier => {
 		res.json(supplier);
 	});
 });
 
 router.delete('/deletesupplier', passport.authenticate('jwt', { session: false }), (req, res) => {
-	console.log(req.query);
-	let _id = req.query;
+	//console.log(req.query.id);
+	let _id = req.query.id;
 
-	Supplier.deletesupplierById(_id, (err, name) => {
+	Supplier.deleteSupplierById(_id, (err, name) => {
 		if (err) {
 			res.json({
 				success: false,
@@ -122,7 +119,7 @@ router.put('/updatesupplier', passport.authenticate('jwt', { session: false }), 
 		notes: req.body.notes
 	};
 
-	Supplier.updatesupplierItem(updatesupplier._id, updatesupplier, (err) => {
+	Supplier.updateSupplierItem(updatesupplier._id, updatesupplier, (err) => {
 		if (err) {
 			console.log(err);
 			res.json({

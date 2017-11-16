@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Supplier = require('../models/supplier');
 // const config = require('../config/database');
 
 const salesRepSchema = mongoose.Schema({
@@ -9,6 +10,11 @@ const salesRepSchema = mongoose.Schema({
 	lastName: {
 		type: String,
 		required: true
+	},
+	nickName: {
+		type: String,
+		required: true,
+		unique: true
 	},
 	supplier: {
 		type: mongoose.Schema.Types.ObjectId,
@@ -48,14 +54,15 @@ const salesRepSchema = mongoose.Schema({
 
 const SalesRep = module.exports = mongoose.model('SalesRep', salesRepSchema);
 
-// Adds new stock item to db
+
 module.exports.addSalesRep = function (newSalesRep, callback) {
+	newSalesRep.nickName = newSalesRep.firstName + ' ' + newSalesRep.lastName;
 	newSalesRep.save(callback);
 };
 
-// Gets list of stock items from db for display in data-table
-module.exports.getAllSalesRep = function () {
-	return SalesRep.find().select('name salesrep.name salesrep.cell salesrep.office');
+
+module.exports.getAllSalesReps = function () {
+	return SalesRep.find().select('firstName lastName');
 };
 
 module.exports.getSalesRepDetails = function (id) {
@@ -68,4 +75,8 @@ module.exports.deleteSalesRepById = function (id, callback) {
 
 module.exports.updateSalesRepItem = function (id, updatedSalesRep, callback) {
 	SalesRep.findByIdAndUpdate(id, updatedSalesRep, callback);
+};
+
+module.exports.deleteAllSalesReps = function (callback) {
+	SalesRep.deleteMany({firstName: /Dan/}, callback);
 };

@@ -10,15 +10,4 @@ export class Supplier {
 
 	constructor() { }
 
-	/* get name(): string {
-		return this._name;
-	} */
-
-	set telephone(number: number) {
-		this._contact.telephone[this._contact.telephone.length - 1] = number;
-	}
-
-	get telephone(): number {
-		return this._contact.telephone[0];
-	}
 }

@@ -31,6 +31,8 @@ const recipes = require('./routes/recipes');
 
 const suppliers = require('./routes/suppliers');
 
+const salesReps = require('./routes/salesreps');
+
 //Set the port for the backend server
 const port = process.env.PORT || 8080;
 
@@ -56,6 +58,8 @@ app.use('/stocks', stocks);
 app.use('/recipes', recipes);
 
 app.use('/suppliers', suppliers);
+
+app.use('/salesreps', salesReps);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'public/index.html'));
