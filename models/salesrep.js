@@ -77,6 +77,3 @@ module.exports.updateSalesRepItem = function (id, updatedSalesRep, callback) {
 	SalesRep.findByIdAndUpdate(id, updatedSalesRep, callback);
 };
 
-module.exports.deleteAllSalesReps = function (callback) {
-	SalesRep.deleteMany({firstName: /Dan/}, callback);
-};
