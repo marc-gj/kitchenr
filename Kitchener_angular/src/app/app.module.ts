@@ -26,7 +26,7 @@ import { StockDetailComponent } from './components/stock/stock-detail/stock-deta
 import { StockListComponent } from './components/stock/stock-list/stock-list.component';
 import { HttpModule } from '@angular/http';
 import { TestComponent } from './components/test/test.component';
-import { SupplierComponent } from './supplier/supplier.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
 
 @NgModule({
 	declarations: [
@@ -37,7 +37,7 @@ import { SupplierComponent } from './supplier/supplier.component';
 		StockDetailComponent,
 		StockListComponent,
 		TestComponent,
-		SupplierComponent
+		SupplierComponent,
 	],
 	imports: [
 		BrowserModule,
