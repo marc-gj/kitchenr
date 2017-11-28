@@ -1,15 +1,55 @@
 <mat-sidenav-container fxFill>
   <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+			<button type="button" mat-button (click)="sidenav.close()">
+					Open sidenav
+				</button>
+		
     <mat-list>
+			<!-- Stock -->
       <mat-list-item> 
-        
 				<button mat-button type="button" routerLink="/add-stock" class="sidenav-link" fxLayoutAlign="start center">
 					<div fxLayoutAlign="center center">
 						<mat-icon class="padding">assignment</mat-icon>
 						<span>Stock</span>
 					</div>
 					</button> 
-      </mat-list-item>
+			</mat-list-item>
+			<!-- Supplier -->
+			<mat-list-item> 
+				<button mat-button type="button" routerLink="/add-stock" class="sidenav-link" fxLayoutAlign="start center">
+					<div fxLayoutAlign="center center">
+						<mat-icon class="padding">assignment</mat-icon>
+						<span>Supplier</span>
+					</div>
+					</button> 
+			</mat-list-item>
+			<!-- Ingredients -->
+			<mat-list-item> 
+					<button mat-button type="button" routerLink="/add-stock" class="sidenav-link" fxLayoutAlign="start center">
+						<div fxLayoutAlign="center center">
+							<mat-icon class="padding">assignment</mat-icon>
+							<span>Ingredients</span>
+						</div>
+						</button> 
+				</mat-list-item>
+				<!-- Recipe -->
+				<mat-list-item> 
+						<button mat-button type="button" routerLink="/add-stock" class="sidenav-link" fxLayoutAlign="start center">
+							<div fxLayoutAlign="center center">
+								<mat-icon class="padding">assignment</mat-icon>
+								<span>Recipe</span>
+							</div>
+							</button> 
+					</mat-list-item>
+					<!-- Dishes -->
+					<mat-list-item> 
+							<button mat-button type="button" routerLink="/add-stock" class="sidenav-link" fxLayoutAlign="start center">
+								<div fxLayoutAlign="center center">
+									<mat-icon class="padding">assignment</mat-icon>
+									<span>Dishes</span>
+								</div>
+								</button> 
+						</mat-list-item>
     </mat-list>
   </mat-sidenav>
 
