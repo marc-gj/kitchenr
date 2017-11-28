@@ -10,13 +10,4 @@ export class SalesRepService {
 
 }
 
-export class SalesRep implements IPerson {
-	id: number;
-	firstName: string;
-	lastName: string;
-	contact: IContact;
-	supplierId: string;
 
-	constructor() {}
-
-}

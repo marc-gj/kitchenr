@@ -1,4 +1,8 @@
 {
 	"cSpell.language": "en",
-	"typescript.tsdk": "node_modules\\typescript\\lib"
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"cSpell.words": [
+		"hadco",
+		"iperson"
+	]
 }

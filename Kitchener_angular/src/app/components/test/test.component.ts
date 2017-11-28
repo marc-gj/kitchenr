@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Supplier } from '../../classes/supplier';
 import { SupplierService } from '../../services/supplier/supplier.service';
 import { IContact } from '../../classes/Icontact';
-import { SalesRep } from '../../services/sales-rep/sales-rep.service';
+import { SalesRep } from '../../classes/sales-rep';
 
 @Component({
 	selector: 'app-test',
@@ -10,8 +11,16 @@ import { SalesRep } from '../../services/sales-rep/sales-rep.service';
 })
 export class TestComponent implements OnInit {
 
-	constructor() { }
+	constructor(private supplier: SupplierService) { }
 
-	ngOnInit() { }
+	suppliers: Supplier[];
 
+	ngOnInit() {
+		this.getSuppliers();
+		console.log(this.suppliers);
+	}
+
+	getSuppliers() {
+		this.suppliers = this.supplier.getSuppliers();
+	}
 }

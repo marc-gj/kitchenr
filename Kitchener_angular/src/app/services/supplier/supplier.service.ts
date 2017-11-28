@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SalesRep } from '../sales-rep/sales-rep.service';
+import { SalesRep } from '../../classes/sales-rep';
 import { IContact } from '../../classes/Icontact';
 import { Supplier } from '../../classes/supplier';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,6 +9,17 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class SupplierService {
+
+	testData = [{
+		name: 'Hadco',
+		address: '4 Palm'
+	},
+	{
+		name: 'Malabar',
+		address: 'Maraval Yea'
+	}];
+
+
 
 	private apiRoot = 'http://localhost/suppliers';
 
@@ -20,11 +31,18 @@ export class SupplierService {
 		patchSupplier: '/updatesupplier'
 	};
 
-	constructor(private http: HttpClient) {
+	constructor() {
 
 	}
+
+	getSuppliers(): Supplier[] {
+		const suppliers: Supplier[] = [];
+		this.testData.forEach(element => {
+			suppliers.push(new Supplier(element.name, element.address));
+		});
+		return suppliers;
+	}
 // GET an Observable of Supplier Arrays from the server
-// Returns a single Array of Supplier objects
 /* 	getSuppliers(): Observable<Supplier[]> {
 		return this.http.get<Supplier[]>(this.apiRoot + this.suppliersUrls.getSuppliers)
 			.pipe(

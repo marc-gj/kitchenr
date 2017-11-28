@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import {
 	MatSidenavModule,
 	MatToolbarModule,
@@ -21,12 +20,15 @@ import { AppComponent } from './app.component';
 import { SidenavComponent } from './components/core/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/core/toolbar/toolbar.component';
 import { AddStockComponent } from './components/stock/add-stock/add-stock.component';
-import { StockService } from './services/stock/stock.service';
 import { StockDetailComponent } from './components/stock/stock-detail/stock-detail.component';
 import { StockListComponent } from './components/stock/stock-list/stock-list.component';
 import { HttpModule } from '@angular/http';
 import { TestComponent } from './components/test/test.component';
 import { SupplierComponent } from './components/supplier/supplier.component';
+
+import { StockService } from './services/stock/stock.service';
+import { SupplierService } from './services/supplier/supplier.service';
+import { MessageService } from './services/message/message.service';
 
 @NgModule({
 	declarations: [
@@ -56,7 +58,7 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 		MatSelectModule,
 		MatAutocompleteModule
 	],
-	providers: [StockService],
+	providers: [StockService, SupplierService, MessageService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

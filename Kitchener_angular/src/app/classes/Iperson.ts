@@ -1,8 +1,8 @@
 import { IContact } from './Icontact';
 
 export interface IPerson {
-	id: number;
-	firstName: string;
-	lastName: string;
-	contact: IContact;
+	_id: number;
+	_firstName: string;
+	_lastName: string;
+	_contact: IContact;
 }

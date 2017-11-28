@@ -1,10 +1,10 @@
 export interface IContact {
-	telephone: number[];
-	cellphone: number[];
-	email: string[];
-	facebook?: string;
-	twitter?: string;
-	snapchat?: string;
-	instagram?: string;
-	linkedin?: string;
+	_telephone: number[];
+	_cellphone: number[];
+	_email: string[];
+	_facebook?: string;
+	_twitter?: string;
+	_snapchat?: string;
+	_instagram?: string;
+	_linkedin?: string;
 }
