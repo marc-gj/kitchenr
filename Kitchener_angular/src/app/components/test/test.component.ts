@@ -13,14 +13,10 @@ export class TestComponent implements OnInit {
 
 	constructor(private supplier: SupplierService) { }
 
-	suppliers: Supplier[];
+
 
 	ngOnInit() {
-		this.getSuppliers();
-		console.log(this.suppliers);
+
 	}
 
-	getSuppliers() {
-		this.suppliers = this.supplier.getSuppliers();
-	}
 }

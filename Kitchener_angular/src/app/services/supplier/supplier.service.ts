@@ -4,6 +4,7 @@ import { IContact } from '../../classes/Icontact';
 import { Supplier } from '../../classes/supplier';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
@@ -19,7 +20,7 @@ export class SupplierService {
 		address: 'Maraval Yea'
 	}];
 
-
+	public suppliers: Supplier[] = [];
 
 	private apiRoot = 'http://localhost/suppliers';
 
@@ -32,43 +33,18 @@ export class SupplierService {
 	};
 
 	constructor() {
-
+		this.populateSuppliersArray();
 	}
 
-	getSuppliers(): Supplier[] {
-		const suppliers: Supplier[] = [];
+	populateSuppliersArray(): void {
 		this.testData.forEach(element => {
-			suppliers.push(new Supplier(element.name, element.address));
+			this.suppliers.push(new Supplier(element.name, element.address));
 		});
-		return suppliers;
 	}
-// GET an Observable of Supplier Arrays from the server
-/* 	getSuppliers(): Observable<Supplier[]> {
-		return this.http.get<Supplier[]>(this.apiRoot + this.suppliersUrls.getSuppliers)
-			.pipe(
-				catchError(this.handleError('getSuppliers', []))
-			);
+
+	getSuppliers(): Observable<Supplier[]> {
+		return of(this.suppliers);
 	}
- */
-	/**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-/* 	private handleError<T>(operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
-
-			// TODO: send the error to remote logging infrastructure
-			console.error(error); // log to console instead
-
-			// TODO: better job of transforming error for user consumption
-			this.log(`${operation} failed: ${error.message}`);
-
-			// Let the app keep running by returning an empty result.
-			return of(result as T);
-		};
-	} */
 
 }
 
