@@ -12,20 +12,9 @@ import { MessageService } from '../message/message.service';
 @Injectable()
 export class SupplierService {
 
-	testData = [{
-		name: 'Hadco',
-		address: '4 Palm'
-	},
-	{
-		name: 'Malabar',
-		address: 'Maraval Yea'
-	}];
-
-	public suppliers: Supplier[] = [];
-
 	private apiRoot = 'http://localhost/suppliers';
 
-	private suppliersUrls = {
+	private suppliersUrl = {
 		addSupplier: '/newsupplier',
 		getSupplierById: '/getsupplierdetails',
 		getSuppliers: '/getallsuppliers',
@@ -33,22 +22,50 @@ export class SupplierService {
 		patchSupplier: '/updatesupplier'
 	};
 
-	constructor(private messageService: MessageService) {
-	}
-
-	populateSuppliersArray(): void {
-		this.testData.forEach(element => {
-			this.suppliers.push(new Supplier(element.name, element.address));
-		});
+	constructor(
+		private http: HttpClient,
+		private messageService: MessageService) {
 	}
 
 	getSuppliers(): Observable<Supplier[]> {
-		// Todo: send the message -after- fetching the suppliers
-		this.messageService.add('SupplierService: Fetched suppliers');
-		this.testData.forEach(element => {
-			this.suppliers.push(new Supplier(element.name, element.address));
-		});
-		return of(this.suppliers);
+		return this.http
+			.get<Supplier[]>(this.apiRoot + this.suppliersUrl.getSuppliers)
+				.pipe(
+					tap(suppliers => this.log(`fetched suppliers`)),
+					catchError(this.handleError('getSuppliers', []))
+				);
+	}
+
+	getSupplier(id: string): Observable<Supplier> {
+		const url = `${this.apiRoot}${this.suppliersUrl.getSupplierById}/${id}`;
+		return this.http.get<Supplier>(url)
+						.pipe(
+							tap(_ => this.log(`fetched suppler id = ${id}`)),
+							catchError(this.handleError<Supplier>(`getSupplier id=${id}`))
+						);
+	}
+
+	private log(message: string): void {
+		this.messageService.add('Supplier Service: ' + message);
+	}
+
+	/**
+	 * Handle Http operation that failed.
+	 * Let the app continue.
+	 * @param operation - name of the operation that failed
+	 * @param result - optional value to return as the observable result
+	 */
+	private handleError<T> (operation = 'operation', result?: T) {
+		return (error: any): Observable<T> => {
+			// TODO: send the error to remote logging infrastructure
+			console.error(error); // log to console instead
+
+			// TODO: better job of transforming error for user consumption
+			this.log(`${operation} failed: ${error.message}`);
+
+			// Let the app keep running by returning an empty result.
+			return of(result as T);
+		}
 	}
 
 }
