@@ -15,6 +15,7 @@ import {
 	MatSelectModule,
 	MatAutocompleteModule
 } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './components/core/sidenav/sidenav.component';
@@ -25,6 +26,7 @@ import { StockListComponent } from './components/stock/stock-list/stock-list.com
 import { HttpModule } from '@angular/http';
 import { TestComponent } from './components/test/test.component';
 import { SupplierComponent } from './components/supplier/supplier.component';
+import { MessageComponent } from './components/message/message.component';
 
 import { StockService } from './services/stock/stock.service';
 import { SupplierService } from './services/supplier/supplier.service';
@@ -40,12 +42,13 @@ import { MessageService } from './services/message/message.service';
 		StockListComponent,
 		TestComponent,
 		SupplierComponent,
+		MessageComponent,
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
-		HttpModule,
+		HttpClientModule,
 		FlexLayoutModule,
 		MatSidenavModule,
 		MatToolbarModule,

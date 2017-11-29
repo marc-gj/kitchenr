@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+import { MessageService } from '../message/message.service';
 
 
 @Injectable()
@@ -32,8 +33,7 @@ export class SupplierService {
 		patchSupplier: '/updatesupplier'
 	};
 
-	constructor() {
-		this.populateSuppliersArray();
+	constructor(private messageService: MessageService) {
 	}
 
 	populateSuppliersArray(): void {
@@ -43,6 +43,11 @@ export class SupplierService {
 	}
 
 	getSuppliers(): Observable<Supplier[]> {
+		// Todo: send the message -after- fetching the suppliers
+		this.messageService.add('SupplierService: Fetched suppliers');
+		this.testData.forEach(element => {
+			this.suppliers.push(new Supplier(element.name, element.address));
+		});
 		return of(this.suppliers);
 	}
 

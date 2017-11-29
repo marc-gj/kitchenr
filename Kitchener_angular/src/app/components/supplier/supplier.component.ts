@@ -15,6 +15,7 @@ export class SupplierComponent implements OnInit {
 	private suppliers: Supplier[];
 
 	ngOnInit() {
+		this.getSuppliers();
 	}
 
 	getSuppliers(): void {
