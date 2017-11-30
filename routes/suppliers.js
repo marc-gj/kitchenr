@@ -8,8 +8,7 @@ const SalesRep = require('../models/salesrep');
 const mongoose = require('mongoose');
 
 // Create supplier with sales rep
-router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (req, res) => {
-	console.log(req.body.salesRep.contact);
+router.post('/newsupplierwsr', passport.authenticate('jwt', { session: false }), (req, res) => {
 	let newSupplier = new Supplier({
 		_id: new mongoose.Types.ObjectId(),
 		name: req.body.name,
@@ -22,7 +21,6 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 		},
 		notes: req.body.notes
 	});
-
 	let newSalesRep = new SalesRep({
 		_id: new mongoose.Types.ObjectId(),
 		firstName: req.body.salesRep.firstName,
@@ -32,10 +30,10 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 			telephone: req.body.salesRep.contact.telephone,
 			cellphone: req.body.salesRep.contact.cellphone,
 			email: req.body.salesRep.contact.email
-		},
+		}
 	});
 
-	Supplier.addSupplier(newSupplier, newSalesRep, (err) => {
+	Supplier.addSupplier(newSupplier, (err) => {
 		if (err) {
 			if (err.code === 11000) {
 				res.json({
@@ -71,7 +69,43 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 			});
 		}
 	});
+});
 
+// Adds a supplier without a sales rep
+router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (req, res) => {
+	let newSupplier = new Supplier({
+		_id: new mongoose.Types.ObjectId(),
+		name: req.body.name,
+		contact: {
+			telephone: req.body.contact.telephone,
+			email: req.body.contact.email,
+			address: req.body.contact.address,
+			fax: req.body.contact.fax,
+			cellphone: req.body.contact.cellphone
+		},
+		notes: req.body.notes
+	});
+
+	Supplier.addSupplier(newSupplier, (err) => {
+		if (err) {
+			if (err.code === 11000) {
+				res.json({
+					success: false,
+					msg: 'supplier already exists.'
+				});
+			} else {
+				res.json({
+					success: false,
+					msg: 'Failed create supplier.'
+				});
+			}
+		} else {
+			res.json({
+				success: true,
+				msg: 'Supplier successfully created!'
+			});
+		}
+	});
 });
 
 router.get('/getallsuppliers', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -82,7 +116,7 @@ router.get('/getallsuppliers', passport.authenticate('jwt', { session: false }),
 
 router.get('/getsupplierdetails', passport.authenticate('jwt', { session: false }), (req, res) => {
 	let _id = req.query;
-	Supplier.getSupplierDetails(_id).then(supplier => {
+	Supplier.getSupplierById(_id).then(supplier => {
 		res.json(supplier);
 	});
 });

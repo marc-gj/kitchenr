@@ -7,16 +7,13 @@ const contactSchema = module.exports = mongoose.Schema({
 		type: String
 	},
 	email: {
-		type: String,
-		required: true
+		type: String
 	},
 	cellphone: {
-		type: [Number],
-		required: true
+		type: [Number]
 	},
 	telephone: {
-		type: [Number],
-		required: true
+		type: [Number]
 	},
 	fax: {
 		type: [Number]
@@ -35,6 +32,5 @@ const contactSchema = module.exports = mongoose.Schema({
 	},
 	instagram: {
 		type: [Number],
-	},
-}
-);
+	}
+});

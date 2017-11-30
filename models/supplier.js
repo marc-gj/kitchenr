@@ -22,24 +22,23 @@ const Supplier = module.exports = mongoose.model('Supplier', supplierSchema);
 
 // Adds new stock item to db
 // The newSuppler and newSalesRep generate ObjectIds on the route before being saved.
-module.exports.addSupplier = function (newSupplier, newSalesRep, callback) {
+module.exports.addSupplier = function (newSupplier, callback) {
 	// Pushes the sales rep onto the salesReps array on the supplier. 
 	// This allows us to have an array of Sales Reps to populate.
 	// This is a many to many model. The Supplier has a reference list of sales reps
 	// and the Sales Rep has a reference to a single Supplier
-	newSupplier.salesRep.push(newSalesRep);
 	newSupplier.save(callback);
 };
 
 // Gets list of suppliers from db
 module.exports.getAllSuppliers = function () {
 	return Supplier.find()
-		.populate('salesRep', 'firstName lastName nickName contact')
-		.select('notes');
+		.populate('salesRep', 'nickName contact.email contact.telephone contact.cellphone')
+		.select('name contact.email contact.address contact.telephone contact.cellphone contact.fax');
 };
 
 // Returns all of the information on a supplier
-module.exports.getSupplierDetails = function (id) {
+module.exports.getSupplierById = function (id) {
 	return Supplier.findById(id);
 };
 
