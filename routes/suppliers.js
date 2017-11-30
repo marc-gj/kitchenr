@@ -108,7 +108,7 @@ router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (r
 	});
 });
 
-router.get('/getallsuppliers', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/getallsuppliers', (req, res) => {
 	Supplier.getAllSuppliers().then(supplier => {
 		res.json(supplier);
 	});

@@ -25,12 +25,15 @@ import { StockDetailComponent } from './components/stock/stock-detail/stock-deta
 import { StockListComponent } from './components/stock/stock-list/stock-list.component';
 import { HttpModule } from '@angular/http';
 import { TestComponent } from './components/test/test.component';
-import { SupplierComponent } from './components/supplier/supplier.component';
 import { MessageComponent } from './components/message/message.component';
 
 import { StockService } from './services/stock/stock.service';
 import { SupplierService } from './services/supplier/supplier.service';
 import { MessageService } from './services/message/message.service';
+import { SupplierShellComponent } from './components/supplier/components/supplier/supplier-shell/supplier-shell.component';
+import { SupplierListComponent } from './components/supplier/components/supplier/supplier-list/supplier-list.component';
+import { SupplierMiniShellComponent } from './components/supplier/components/supplier/supplier-mini-shell/supplier-mini-shell.component';
+import { SupplierDetailComponent } from './components/supplier/components/supplier/supplier-detail/supplier-detail.component';
 
 @NgModule({
 	declarations: [
@@ -41,8 +44,11 @@ import { MessageService } from './services/message/message.service';
 		StockDetailComponent,
 		StockListComponent,
 		TestComponent,
-		SupplierComponent,
 		MessageComponent,
+		SupplierShellComponent,
+		SupplierListComponent,
+		SupplierMiniShellComponent,
+		SupplierDetailComponent,
 	],
 	imports: [
 		BrowserModule,

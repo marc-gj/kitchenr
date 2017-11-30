@@ -12,10 +12,11 @@ import { MessageService } from '../message/message.service';
 @Injectable()
 export class SupplierService {
 
-	private apiRoot = 'http://localhost/suppliers';
+	private apiRoot = 'http://localhost:8080/suppliers';
 
 	private suppliersUrl = {
 		addSupplier: '/newsupplier',
+		addSupplierWSR: '/newsupplierwsr',
 		getSupplierById: '/getsupplierdetails',
 		getSuppliers: '/getallsuppliers',
 		deleteSupplier: '/deletesupplier',
