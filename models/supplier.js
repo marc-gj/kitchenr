@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const contactSchema = require('./contact');
 //const SalesRep = require('../models/salesrep');
 // const config = require('../config/database');
 
@@ -8,25 +9,14 @@ const supplierSchema = mongoose.Schema({
 		required: true,
 		unique: true
 	},
-	telephone: {
-		type: Number,
-		required: true
-	},
-	fax: Number,
-	email: {
-		type: String,
-		required: true
-	},
-	address: {
-		type: String,
-		required: true
-	},
+	contact: contactSchema,
 	notes: String,
-	salesReps: [{
+	salesRep: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'SalesRep'
 	}]
 });
+
 
 const Supplier = module.exports = mongoose.model('Supplier', supplierSchema);
 
@@ -37,15 +27,15 @@ module.exports.addSupplier = function (newSupplier, newSalesRep, callback) {
 	// This allows us to have an array of Sales Reps to populate.
 	// This is a many to many model. The Supplier has a reference list of sales reps
 	// and the Sales Rep has a reference to a single Supplier
-	newSupplier.salesReps.push(newSalesRep);
+	newSupplier.salesRep.push(newSalesRep);
 	newSupplier.save(callback);
 };
 
 // Gets list of suppliers from db
 module.exports.getAllSuppliers = function () {
 	return Supplier.find()
-		.populate('salesReps', 'firstName lastName nickName')
-		.select('name telephone address');
+		.populate('salesRep', 'firstName lastName nickName contact')
+		.select('notes');
 };
 
 // Returns all of the information on a supplier

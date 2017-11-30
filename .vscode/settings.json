@@ -2,7 +2,16 @@
 	"cSpell.language": "en",
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"cSpell.words": [
+		"backend",
+		"deletesupplier",
+		"getallsuppliers",
+		"getsupplierdetails",
 		"hadco",
-		"iperson"
+		"iperson",
+		"newsupplier",
+		"salesrep",
+		"salesreps",
+		"snapchat",
+		"updatesupplier"
 	]
 }

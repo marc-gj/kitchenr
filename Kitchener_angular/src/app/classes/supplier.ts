@@ -4,13 +4,11 @@ import { SalesRep } from './sales-rep';
 export class Supplier {
 /* 	private _id: string; */
 	private _name: string;
-	private _address: string;
-	/* private _contact: IContact;
-	private _salesRep: SalesRep; */
+	private _contact: IContact;
+	private _salesRep: SalesRep;
 
-	constructor(name: string, address: string) {
+	constructor(name: string) {
 		this.name = name;
-		this.address = address;
 	}
 
 	get name() {
@@ -19,14 +17,6 @@ export class Supplier {
 
 	set name(name: string) {
 		this._name = name;
-	}
-
-	get address() {
-		return this._address;
-	}
-
-	set address(address: string) {
-		this._address = address;
 	}
 
 	/* get contact() {

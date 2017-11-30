@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Supplier = require('../models/supplier');
+const Supplier = require('./supplier');
+const Contact = require('./contact');
 // const config = require('../config/database');
 
 const salesRepSchema = mongoose.Schema({
@@ -21,35 +22,7 @@ const salesRepSchema = mongoose.Schema({
 		required: true,
 		ref: 'Supplier'
 	},
-	contact: {
-		email: {
-			type: String,
-			required: true
-		},
-		cellphone: {
-			type: [Number],
-			required: true
-		},
-		telephone: {
-			type: [Number],
-			required: true
-		},
-		facebook: {
-			type: String,
-		},
-		twitter: {
-			type: [Number],
-		},
-		linkedin: {
-			type: [Number],
-		},
-		snapchat: {
-			type: [Number],
-		},
-		instagram: {
-			type: [Number],
-		},
-	}
+	contact: Contact
 });
 
 const SalesRep = module.exports = mongoose.model('SalesRep', salesRepSchema);

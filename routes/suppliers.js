@@ -9,25 +9,29 @@ const mongoose = require('mongoose');
 
 // Create supplier with sales rep
 router.post('/newsupplier', passport.authenticate('jwt', { session: false }), (req, res) => {
+	console.log(req.body.salesRep.contact);
 	let newSupplier = new Supplier({
 		_id: new mongoose.Types.ObjectId(),
 		name: req.body.name,
-		telephone: req.body.telephone,
-		email: req.body.email,
-		address: req.body.address,
-		fax: req.body.fax,
+		contact: {
+			telephone: req.body.contact.telephone,
+			email: req.body.contact.email,
+			address: req.body.contact.address,
+			fax: req.body.contact.fax,
+			cellphone: req.body.contact.cellphone
+		},
 		notes: req.body.notes
 	});
 
 	let newSalesRep = new SalesRep({
 		_id: new mongoose.Types.ObjectId(),
-		firstName: req.body._salesRep.firstName,
-		lastName: req.body._salesRep.lastName,
+		firstName: req.body.salesRep.firstName,
+		lastName: req.body.salesRep.lastName,
 		supplier: newSupplier._id,
 		contact: {
-			telephone: req.body._salesRep.contact.telephone,
-			cellphone: req.body._salesRep.contact.cellphone,
-			email: req.body._salesRep.contact.email
+			telephone: req.body.salesRep.contact.telephone,
+			cellphone: req.body.salesRep.contact.cellphone,
+			email: req.body.salesRep.contact.email
 		},
 	});
 
@@ -87,7 +91,7 @@ router.delete('/deletesupplier', passport.authenticate('jwt', { session: false }
 	//console.log(req.query.id);
 	let _id = req.query.id;
 
-	Supplier.deleteSupplierById(_id, (err, name) => {
+	Supplier.deleteSupplierById(_id, (err) => {
 		if (err) {
 			res.json({
 				success: false,
@@ -102,22 +106,8 @@ router.delete('/deletesupplier', passport.authenticate('jwt', { session: false }
 	});
 });
 
-router.put('/updatesupplier', passport.authenticate('jwt', { session: false }), (req, res) => {
-	let updatesupplier = {
-		_id: req.body._id,
-		name: req.body.name,
-		salesRep: {
-			name: req.body.salesRep.name,
-			email: req.body.salesRep.email,
-			cell: req.body.salesRep.cell,
-			office: req.body.salesRep.office
-		},
-		telephone: req.body.telephone,
-		email: req.body.email,
-		address: req.body.address,
-		fax: req.body.fax,
-		notes: req.body.notes
-	};
+router.patch('/updatesupplier', passport.authenticate('jwt', { session: false }), (req, res) => {
+	let updatesupplier = req.body;
 
 	Supplier.updateSupplierItem(updatesupplier._id, updatesupplier, (err) => {
 		if (err) {

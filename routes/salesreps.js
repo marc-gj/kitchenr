@@ -12,10 +12,10 @@ router.get('/getallsalesreps', passport.authenticate('jwt', { session: false }),
 	});
 });
 
-router.delete('/deleteallsalesreps', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete('/deletesalesrep', passport.authenticate('jwt', { session: false }), (req, res) => {
 	//console.log(req.query.id);
 
-	SalesRep.deleteAllSalesReps((err) => {
+	SalesRep.deleteSalesRepById(req.query.id, (err) => {
 		if (err) {
 			res.json({
 				success: false,
