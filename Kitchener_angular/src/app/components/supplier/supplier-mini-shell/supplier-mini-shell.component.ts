@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SupplierService } from '../../../../../services/supplier/supplier.service';
+import { SupplierService } from '../../../services/supplier/supplier.service';
 
 @Component({
 	selector: 'app-supplier-mini-shell',

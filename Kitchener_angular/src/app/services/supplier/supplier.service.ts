@@ -12,6 +12,8 @@ import { MessageService } from '../message/message.service';
 @Injectable()
 export class SupplierService {
 
+	private supplierList$: Observable<Supplier[]>;
+
 	private apiRoot = 'http://localhost:8080/suppliers';
 
 	private suppliersUrl = {

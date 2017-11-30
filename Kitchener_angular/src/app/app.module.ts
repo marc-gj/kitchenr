@@ -30,10 +30,10 @@ import { MessageComponent } from './components/message/message.component';
 import { StockService } from './services/stock/stock.service';
 import { SupplierService } from './services/supplier/supplier.service';
 import { MessageService } from './services/message/message.service';
-import { SupplierShellComponent } from './components/supplier/components/supplier/supplier-shell/supplier-shell.component';
-import { SupplierListComponent } from './components/supplier/components/supplier/supplier-list/supplier-list.component';
-import { SupplierMiniShellComponent } from './components/supplier/components/supplier/supplier-mini-shell/supplier-mini-shell.component';
-import { SupplierDetailComponent } from './components/supplier/components/supplier/supplier-detail/supplier-detail.component';
+import { SupplierShellComponent } from './components/supplier/supplier-shell/supplier-shell.component';
+import { SupplierListComponent } from './components/supplier/supplier-list/supplier-list.component';
+import { SupplierMiniShellComponent } from './components/supplier/supplier-mini-shell/supplier-mini-shell.component';
+import { SupplierDetailComponent } from './components/supplier/supplier-detail/supplier-detail.component';
 
 @NgModule({
 	declarations: [
