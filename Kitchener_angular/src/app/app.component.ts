@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { SidenavComponent } from './components/core/sidenav/sidenav.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @Component({
 	selector: 'app-root',

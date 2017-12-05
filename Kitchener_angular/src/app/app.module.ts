@@ -3,37 +3,21 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-	MatSidenavModule,
-	MatToolbarModule,
-	MatIconModule,
-	MatButtonModule,
-	MatListModule,
-	MatInputModule,
-	MatCardModule,
-	MatGridListModule,
-	MatSelectModule,
-	MatAutocompleteModule
-} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './material.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
 
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './components/core/sidenav/sidenav.component';
-import { ToolbarComponent } from './components/core/toolbar/toolbar.component';
-import { AddStockComponent } from './components/stock/add-stock/add-stock.component';
-import { StockDetailComponent } from './components/stock/stock-detail/stock-detail.component';
-import { StockListComponent } from './components/stock/stock-list/stock-list.component';
-import { HttpModule } from '@angular/http';
-import { TestComponent } from './components/test/test.component';
-import { MessageComponent } from './components/message/message.component';
-
-import { StockService } from './services/stock/stock.service';
-import { SupplierService } from './services/supplier/supplier.service';
-import { MessageService } from './services/message/message.service';
-import { SupplierShellComponent } from './components/supplier/supplier-shell/supplier-shell.component';
-import { SupplierListComponent } from './components/supplier/supplier-list/supplier-list.component';
-import { SupplierMiniShellComponent } from './components/supplier/supplier-mini-shell/supplier-mini-shell.component';
-import { SupplierDetailComponent } from './components/supplier/supplier-detail/supplier-detail.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { AddStockComponent } from './stock/add-stock/add-stock.component';
+import { StockDetailComponent } from './stock/stock-detail/stock-detail.component';
+import { StockListComponent } from './stock/stock-list/stock-list.component';
+import { MessageComponent } from './messages/message.component';
+import { StockService } from './stock/stock.service';
+import { SupplierService } from './suppliers/supplier.service';
+import { MessageService } from './messages/message.service';
+import { StockComponent } from './stock/stock.component';
 
 @NgModule({
 	declarations: [
@@ -43,29 +27,17 @@ import { SupplierDetailComponent } from './components/supplier/supplier-detail/s
 		AddStockComponent,
 		StockDetailComponent,
 		StockListComponent,
-		TestComponent,
 		MessageComponent,
-		SupplierShellComponent,
-		SupplierListComponent,
-		SupplierMiniShellComponent,
-		SupplierDetailComponent,
+		StockComponent,
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
 		HttpClientModule,
+		MaterialModule,
 		FlexLayoutModule,
-		MatSidenavModule,
-		MatToolbarModule,
-		MatIconModule,
-		MatButtonModule,
-		MatListModule,
-		MatInputModule,
-		MatCardModule,
-		MatGridListModule,
-		MatSelectModule,
-		MatAutocompleteModule
+		SuppliersModule
 	],
 	providers: [StockService, SupplierService, MessageService],
 	bootstrap: [AppComponent]
