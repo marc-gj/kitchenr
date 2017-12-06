@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body {
   margin: 0;
@@ -9,4 +9,13 @@ html, body {
 
 .padding {
   padding: 16px 16px 16px 16px;
+}
+
+mat-toolbar {
+	padding: 0px !important;
+}
+
+mat-toolbar-row {
+	height: 100vh !important;
+	flex-direction: column !important;
 }

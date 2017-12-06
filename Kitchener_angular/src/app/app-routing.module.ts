@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddStockComponent } from './stock/add-stock/add-stock.component';
-import { SupplierListComponent } from './suppliers/supplier-list/supplier-list.component';
+import { SuppliersComponent } from './suppliers/suppliers.component';
+import { StockComponent } from './stock/stock.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { DishesComponent } from './dishes/dishes.component';
 
 const routes: Routes = [
-	{ path: 'add-stock', component: AddStockComponent },
-	{ path: 'suppliers', component: SupplierListComponent }
+	{ path: 'stock', component: StockComponent },
+	{ path: 'suppliers', component: SuppliersComponent },
+	{ path: 'ingredients', component: IngredientsComponent },
+	{ path: 'recipes', component: RecipesComponent },
+	{ path: 'dishes', component: DishesComponent }
 ];
 
 @NgModule({

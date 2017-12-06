@@ -1,0 +1,13 @@
+.list-area {
+	/* height: 100vh; */
+	background-color: grey;
+	top:0;
+	bottom:0;
+	position: absolute;
+	width: 300px;
+}
+
+app-list-search {
+	width: 100%;
+	padding: 18px;
+}
