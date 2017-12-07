@@ -6,15 +6,18 @@ import { IngredientsComponent } from './ingredients/ingredients.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { SignInComponent } from './users/sign-in/sign-in.component';
+import { CoreComponent } from './core/core.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'sign-in', pathMatch: 'full' },
 	{ path: 'sign-in', component: SignInComponent},
-	{ path: 'stock', component: StockComponent },
-	{ path: 'suppliers', component: SuppliersComponent },
-	{ path: 'ingredients', component: IngredientsComponent },
-	{ path: 'recipes', component: RecipesComponent },
-	{ path: 'dishes', component: DishesComponent }
+	{ path: 'core', component: CoreComponent, children: [
+		{ path: 'stock', component: StockComponent },
+		{ path: 'suppliers', component: SuppliersComponent },
+		{ path: 'ingredients', component: IngredientsComponent },
+		{ path: 'recipes', component: RecipesComponent },
+		{ path: 'dishes', component: DishesComponent }
+	] },
 ];
 
 @NgModule({

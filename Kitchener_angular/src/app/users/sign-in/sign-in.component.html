@@ -1,11 +1,36 @@
-<mat-card>
+<div class="content" fxLayoutAlign="center center">
+	<mat-card fxLayout="column" fxLayoutAlign="start center">
 		<h1>
-			Sign in to use Kitchener
+			Kitchener
 		</h1>
-		<mat-form-field>
-			<input type="text" matInput placeholder="Username">
-		</mat-form-field>
-		<mat-form-field>
-			<input type="text" matInput placeholder="Password">
-		</mat-form-field>
-</mat-card>
+		<form 
+			[formGroup]="signInForm" 
+			fxLayout="column" 
+			fxLayoutAlign="start center" 
+			fxFill
+			(ngSubmit)="onSubmit()">
+			<mat-form-field>
+				<input 
+					type="email" 
+					matInput 
+					formControlName="email"
+					placeholder="Email@address.com">
+			</mat-form-field>
+			<mat-form-field>
+				<input 
+					type="text" 
+					matInput 
+					formControlName="username"
+					placeholder="Username">
+			</mat-form-field>
+			<mat-form-field>
+				<input 
+					type="password" 
+					matInput 
+					formControlName="password"
+					placeholder="Password">
+			</mat-form-field>
+			<button type="submit" class="submit" mat-button>Sign In</button>
+		</form>
+	</mat-card>
+</div>

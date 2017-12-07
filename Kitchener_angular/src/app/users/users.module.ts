@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from './material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsersComponent } from './users.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { MaterialModule } from './material.module';
 
 @NgModule({
 	declarations: [
@@ -12,7 +14,7 @@ import { MaterialModule } from './material.module';
 		UserProfileComponent,
 		SignInComponent
 	],
-	imports: [CommonModule, MaterialModule]
+	imports: [CommonModule, ReactiveFormsModule, MaterialModule, FlexLayoutModule]
 })
 
 export class UsersModule {}

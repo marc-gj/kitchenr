@@ -10,7 +10,9 @@
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
-    ],
+		],
+		"noImplicitAny": true,
+    "strictNullChecks": true,
     "lib": [
       "es2017",
       "dom"
