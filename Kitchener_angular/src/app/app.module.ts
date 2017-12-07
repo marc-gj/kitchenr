@@ -5,6 +5,7 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersModule } from './users/users.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { StockModule } from './stock/stock.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
@@ -38,6 +39,7 @@ import { ListSearchComponent } from './list-area/search/list-search.component';
 		HttpClientModule,
 		MaterialModule,
 		FlexLayoutModule,
+		UsersModule,
 		SuppliersModule,
 		StockModule,
 		IngredientsModule,

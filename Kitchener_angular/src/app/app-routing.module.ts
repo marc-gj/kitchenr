@@ -5,8 +5,11 @@ import { StockComponent } from './stock/stock.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { DishesComponent } from './dishes/dishes.component';
+import { SignInComponent } from './users/sign-in/sign-in.component';
 
 const routes: Routes = [
+	{ path: '', redirectTo: 'sign-in', pathMatch: 'full' },
+	{ path: 'sign-in', component: SignInComponent},
 	{ path: 'stock', component: StockComponent },
 	{ path: 'suppliers', component: SuppliersComponent },
 	{ path: 'ingredients', component: IngredientsComponent },

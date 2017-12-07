@@ -1,3 +1,10 @@
-<div class="list-area" fxLayoutAlign="center start">
-	<app-list-search></app-list-search>
+<div class="list-area" fxLayout="column" fxLayoutAlign="start">
+	<app-list-search class="padding"></app-list-search>
+	<button class="new-item-button" mat-button>
+		<div class="add" fxLayout="row" fxLayoutAlign="center center">
+			<mat-icon>add</mat-icon>
+			new
+			<span style="width:5px;"></span>{{item.type}}
+		</div>
+	</button>
 </div>
