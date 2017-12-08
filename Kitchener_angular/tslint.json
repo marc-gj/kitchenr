@@ -20,7 +20,7 @@
     "import-spacing": true,
     "indent": [
       true,
-      "tabs"
+      "spaces"
     ],
     "interface-over-type-literal": true,
     "label-position": true,
@@ -137,7 +137,6 @@
     "directive-class-suffix": true,
     "no-access-missing-member": true,
     "templates-use-public": true,
-		"invoke-injectable": true,
-		"autoFixOnSave": true
+		"invoke-injectable": true
   }
 }

@@ -5,11 +5,11 @@ import { StockComponent } from './stock.component';
 import { StockListComponent } from './stock-list/stock-list.component';
 
 @NgModule({
-	declarations: [
-		StockComponent,
-		StockListComponent
-	],
-	imports: [CommonModule]
+  declarations: [
+    StockComponent,
+    StockListComponent
+  ],
+  imports: [CommonModule]
 })
 
-export class StockModule {}
+export class StockModule { }

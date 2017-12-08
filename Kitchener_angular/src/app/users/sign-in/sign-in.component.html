@@ -2,7 +2,9 @@
 	<mat-card fxLayout="column" fxLayoutAlign="start center">
 		<h1>
 			Kitchener
-		</h1>
+    </h1>
+    <h3>State: {{(state | async).token}}</h3>
+    <h3>State: {{(state | async).authenticated}}</h3>
 		<form 
 			[formGroup]="signInForm" 
 			fxLayout="column" 
@@ -31,6 +33,6 @@
 					placeholder="Password">
 			</mat-form-field>
 			<button type="submit" class="submit" mat-button>Sign In</button>
-		</form>
+    </form>
 	</mat-card>
 </div>

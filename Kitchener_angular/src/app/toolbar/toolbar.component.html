@@ -6,8 +6,8 @@
 				</button>
 
 	<span fxFlex></span>
-		<button mat-button type="button"> 
-			Profile
+		<button mat-button type="button" (click)="signOut()"> 
+			<span *ngIf="(authState | async).authenticated === true">Signout</span>
 		</button>
   
 </mat-toolbar>
