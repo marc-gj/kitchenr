@@ -27,6 +27,7 @@ import { MessageService } from './messages/message.service';
 import { AuthService } from './users/auth/auth.service';
 import { reducers } from './store/app.reducers';
 import { AuthEffects } from './users/auth/auth.effects';
+import { AuthGuard } from './users/auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { AuthEffects } from './users/auth/auth.effects';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects])
   ],
-  providers: [SupplierService, MessageService, AuthService],
+  providers: [SupplierService, MessageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

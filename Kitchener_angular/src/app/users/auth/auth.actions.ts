@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export const CREATE_NEW_USER = 'CREATE_NEW_USER';
+export const CHECK_LOCAL_STORAGE_TOKEN = 'CHECK_LOCAL_STORAGE_TOKEN';
 export const TRY_SIGN_IN = 'TRY_SIGN_IN';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_IN_FAILED = 'SIGN_IN_FAILED';
@@ -9,6 +10,11 @@ export const SET_TOKEN = 'SET_TOKEN';
 
 export class NewUser implements Action {
   readonly type = CREATE_NEW_USER;
+}
+
+export class CheckLocalStorageToken implements Action {
+  readonly type = CHECK_LOCAL_STORAGE_TOKEN;
+  constructor (public payload: {token: string}) {}
 }
 
 export class SignIn implements Action {

@@ -1,0 +1,96 @@
+<mat-card>
+	<mat-card-header>
+		<h2>Enter a new Stock Item</h2>
+	</mat-card-header>
+	<mat-form-field>
+		<input matInput placeholder="Image">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<mat-select placeholder="Category">
+			<mat-option value="1">1</mat-option>
+			<mat-option value="2">2</mat-option>
+			<mat-option value="3">3</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput placeholder="Name">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput [matAutocomplete]="auto" placeholder="Brand">
+		<mat-autocomplete #auto="matAutocomplete">
+			<mat-option>
+				<span>Barilla</span>
+			</mat-option>
+		</mat-autocomplete>
+
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput [matAutocomplete]="auto" placeholder="Vendor/Supplier">
+		<mat-autocomplete #auto="matAutocomplete">
+			<mat-option>
+				<span>Hadco</span>
+			</mat-option>
+		</mat-autocomplete>
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<span matPrefix>$ &nbsp;</span>
+		<input matInput placeholder="Price" type="number">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<mat-select placeholder="Priced by">
+			<mat-option value="Weight">Weight</mat-option>
+			<mat-option value="Volume">Volume</mat-option>
+			<mat-option value="Unit">Unit</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput placeholder="Items per case" type="number">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput placeholder="Quantity per item" type="number">
+	</mat-form-field>
+
+
+	<!-- <mat-form-field>
+		<mat-select placeholder="Unit of measure">
+			<mat-option *ngFor="let item of stockFormInfo.unitsOfMeasure" value="item">{{item}}</mat-option>
+		</mat-select>
+	</mat-form-field> -->
+
+
+	<mat-form-field>
+		<input matInput placeholder="Max stock level" type="number">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput placeholder="Min stock level *Par level*" type="number">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput placeholder="Current stock level" type="number">
+	</mat-form-field>
+
+
+	<mat-form-field>
+		<input matInput placeholder="Note" type="text">
+	</mat-form-field>
+
+</mat-card>

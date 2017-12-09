@@ -11,8 +11,11 @@ export class AuthService {
   private apiRoot = 'http://localhost:8080/users';
 
   private authUrl = {
-    authenticate: '/authenticate'
+    authenticate: '/authenticate',
+    jwtvalidator: '/jwtvalidator'
   };
+
+  private JWT = 'Kitchnr';
 
   constructor(
     private http: HttpClient,
@@ -44,30 +47,23 @@ export class AuthService {
   }
 
   storeJWTInLocalStorage(payload: string): void {
-    localStorage.setItem('Kitchnr', payload);
+    localStorage.setItem(this.JWT, payload);
+  }
+
+  getJWTFromLocalStorage(): {jwt: string | null} {
+    return { jwt: localStorage.getItem(this.JWT) };
   }
 
   clearJWTFromLocalStorage(): void {
-    localStorage.removeItem('Kitchnr');
+    localStorage.removeItem(this.JWT);
   }
 
-  /* getSuppliers(): Observable<Supplier[]> {
-    return this.http
-      .get<Supplier[]>(this.apiRoot + this.suppliersUrl.getSuppliers)
-      .pipe(
-      tap(suppliers => this.log(`fetched suppliers`)),
-      catchError(this.handleError('getSuppliers', []))
-      );
+  validateJWT(): boolean {
+    if (this.http.get<boolean>(this.apiRoot + this.authUrl.jwtvalidator) === of(true)
+  ) { return true; }
+  return false;
   }
 
-  getSupplier(id: string): Observable<Supplier> {
-    const url = `${this.apiRoot}${this.suppliersUrl.getSupplierById}/${id}`;
-    return this.http.get<Supplier>(url)
-      .pipe(
-      tap(_ => this.log(`fetched suppler id = ${id}`)),
-      catchError(this.handleError<Supplier>(`getSupplier id=${id}`))
-      );
-  } */
 
   private log(message: string): void {
     this.messageService.add('Supplier Service: ' + message);

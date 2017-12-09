@@ -34,7 +34,7 @@ const suppliers = require('./routes/suppliers');
 const salesReps = require('./routes/salesreps');
 
 //Set the port for the backend server
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 //Allows requests from all domains
 app.use(cors());

@@ -6,7 +6,7 @@ export interface State {
 }
 
 const initialState: State = {
-  token: 'null',
+  token: null,
   authenticated: false
 };
 
