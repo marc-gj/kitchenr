@@ -24,7 +24,9 @@ export class AuthEffects {
       if (dataFromServer.success === true) {
         this.authService.storeJWTInLocalStorage(dataFromServer.token);
         this.router.navigate(['/core']);
-        return [{type: AuthActions.SIGN_IN}, {type: AuthActions.SET_TOKEN, payload: dataFromServer.token}];
+        return [{type: AuthActions.SIGN_IN}, {
+                                              type: AuthActions.SET_TOKEN,
+                                              payload: this.authService.getJWTFromLocalStorage().jwt}];
       }
       return of({
         type: AuthActions.SIGN_IN_FAILED
@@ -45,5 +47,11 @@ export class AuthEffects {
     this.authService.clearJWTFromLocalStorage();
     this.router.navigate(['/']);
     console.log(localStorage);
+  });
+
+  @Effect() validateLocalStorageToken$ = this.actions$
+  .ofType(AuthActions.VALIDATE_LOCAL_STORAGE_TOKEN)
+  .map((action: AuthActions.ValidateLocalStorageToken) => {
+    this.authService.validateJWT();
   });
   }

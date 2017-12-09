@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersModule } from './users/users.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { StockModule } from './stock/stock.module';
@@ -28,6 +28,7 @@ import { AuthService } from './users/auth/auth.service';
 import { reducers } from './store/app.reducers';
 import { AuthEffects } from './users/auth/auth.effects';
 import { AuthGuard } from './users/auth/auth-guard.service';
+import { AuthInterceptor } from './users/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,13 @@ import { AuthGuard } from './users/auth/auth-guard.service';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects])
   ],
-  providers: [SupplierService, MessageService, AuthService, AuthGuard],
+  providers: [
+    SupplierService,
+    MessageService,
+    AuthService,
+    AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

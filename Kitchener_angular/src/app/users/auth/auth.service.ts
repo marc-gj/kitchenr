@@ -59,7 +59,7 @@ export class AuthService {
   }
 
   validateJWT(): boolean {
-    if (this.http.get<boolean>(this.apiRoot + this.authUrl.jwtvalidator) === of(true)
+    if (this.http.get<{success: boolean}>(this.apiRoot + this.authUrl.jwtvalidator).map(data => data.success) === of(true)
   ) { return true; }
   return false;
   }
