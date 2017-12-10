@@ -1,4 +1,4 @@
-<mat-sidenav-container fxFill>
+<mat-sidenav-container fxFlex>
 	<mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
 		<mat-nav-list>
 			<!-- Stock -->
@@ -7,10 +7,12 @@
 				<span>Stock</span>
 			</mat-list-item>
 			<!-- Supplier -->
-			<mat-list-item routerLink="suppliers">
+      <mat-list-item 
+      routerLink="suppliers"
+      (click)="changePage()">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
-					<span>Supplier</span>
+					<span>Suppliers</span>
 				</div>
 			</mat-list-item>
 			<!-- Ingredients -->
@@ -24,7 +26,7 @@
 			<mat-list-item routerLink="recipes">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
-					<span>Recipe</span>
+					<span>Recipes</span>
 				</div>
 			</mat-list-item>
 			<!-- Dishes -->
@@ -33,12 +35,14 @@
 					<mat-icon class="padding">assignment</mat-icon>
 					<span>Dishes</span>
 				</div>
-			</mat-list-item>
+      </mat-list-item>
+      <p *ngIf="pageData">{{pageData}}</p>
 		</mat-nav-list>
 	</mat-sidenav>
 
 	<div class="content" fxLayout="row">
-		<app-list-area></app-list-area>
+    
+    <app-list-area></app-list-area>
 		<router-outlet></router-outlet>
 	</div>
 

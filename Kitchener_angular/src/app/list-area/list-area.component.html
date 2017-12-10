@@ -1,9 +1,14 @@
 <div class="list-area" fxLayout="column" fxLayoutAlign="start">
-	<app-list-search class="padding"></app-list-search>
+  <app-list-search class="padding"></app-list-search>
+  <mat-list>
+    <mat-list-item *ngFor="let item of (listState$ | async).list">
+      <span>{{item.name}}</span>
+    </mat-list-item>
+  </mat-list>
 	<button class="new-item-button" mat-button>
 		<div class="add" fxLayout="row" fxLayoutAlign="center center">
 			<mat-icon>add</mat-icon>
-			new
+			new {{page}}
 			<span style="width:5px;"></span>
 		</div>
 	</button>

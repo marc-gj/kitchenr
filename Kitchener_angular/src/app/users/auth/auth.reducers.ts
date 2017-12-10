@@ -13,23 +13,23 @@ const initialState: State = {
 export function authReducer(state = initialState, action: AuthActions.AuthActions) {
   switch (action.type) {
     case (AuthActions.CREATE_NEW_USER):
-    case(AuthActions.SIGN_IN):
-    return {
+    case (AuthActions.SIGN_IN):
+      return {
       ...state,
-      authenticated: true
+        authenticated: true
     };
     case (AuthActions.SIGN_OUT):
-    return {
+      return {
       ...state,
-      authenticated: false,
-      token: null
+        authenticated: false,
+          token: null
     };
     case (AuthActions.SET_TOKEN):
-    return {
+      return {
       ...state,
-      token: action.payload
+        token: action.payload
     };
     default:
-    return state;
+      return state;
   }
 }

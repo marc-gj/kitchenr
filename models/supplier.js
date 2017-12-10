@@ -33,8 +33,7 @@ module.exports.addSupplier = function (newSupplier, callback) {
 // Gets list of suppliers from db
 module.exports.getAllSuppliers = function () {
 	return Supplier.find()
-		.populate('salesRep', 'nickName contact.email contact.telephone contact.cellphone')
-		.select('name contact.email contact.address contact.telephone contact.cellphone contact.fax');
+		.select('name');
 };
 
 // Returns all of the information on a supplier

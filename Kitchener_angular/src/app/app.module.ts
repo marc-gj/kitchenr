@@ -19,6 +19,7 @@ import { CoreComponent } from './core/core.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MessageComponent } from './messages/message.component';
+
 import { ListAreaComponent } from './list-area/list-area.component';
 import { ListSearchComponent } from './list-area/search/list-search.component';
 
@@ -27,8 +28,11 @@ import { MessageService } from './messages/message.service';
 import { AuthService } from './users/auth/auth.service';
 import { reducers } from './store/app.reducers';
 import { AuthEffects } from './users/auth/auth.effects';
+import { DataStorageEffects } from './datastorage/datastorage.effects';
 import { AuthGuard } from './users/auth/auth-guard.service';
 import { AuthInterceptor } from './users/auth/auth.interceptor';
+import { TestResolver } from './test.resolver';
+import { DataStorageService } from './datastorage/datastorage.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +40,9 @@ import { AuthInterceptor } from './users/auth/auth.interceptor';
     SidenavComponent,
     ToolbarComponent,
     MessageComponent,
+    CoreComponent,
     ListAreaComponent,
-    ListSearchComponent,
-    CoreComponent
+    ListSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -54,13 +58,15 @@ import { AuthInterceptor } from './users/auth/auth.interceptor';
     MaterialModule,
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects, DataStorageEffects])
   ],
   providers: [
     SupplierService,
     MessageService,
     AuthService,
+    DataStorageService,
     AuthGuard,
+    TestResolver,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

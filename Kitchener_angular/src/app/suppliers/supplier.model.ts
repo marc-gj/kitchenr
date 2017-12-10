@@ -1,23 +1,32 @@
-import { IContact } from '../shared/contact.model';
-import { SalesRep } from './sales-rep.model';
+/* import { IContact } from '../shared/contact.model';
+import { SalesRep } from './sales-rep.model'; */
 
 export class Supplier {
-/* 	private _id: string; */
-	private _name: string;
-	private _contact: IContact;
-	private _salesRep: SalesRep;
+  /* 	private _id: string; */
+  private _name: string;
+  private _id: string;
+  /* private _contact: IContact;
+  private _salesRep: SalesRep; */
 
-	constructor(name: string) {
-		this.name = name;
-	}
+  constructor(name: string) {
+    this.name = name;
+  }
 
-	get name() {
-		return this._name;
-	}
+  get name() {
+    return this._name;
+  }
 
-	set name(name: string) {
-		this._name = name;
-	}
+  set name(name: string) {
+    this._name = name;
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  set id(id: string) {
+    this._id = id;
+  }
 
 	/* get contact() {
 		return this._contact;

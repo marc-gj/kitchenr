@@ -8,15 +8,16 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { DishesComponent } from './dishes/dishes.component';
 import { SignInComponent } from './users/sign-in/sign-in.component';
 import { CoreComponent } from './core/core.component';
+import { TestResolver } from './test.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   {
-    path: 'core', component: CoreComponent, canActivate: [AuthGuard], children: [
-      { path: 'stock', component: StockComponent },
+    path: 'core', component: CoreComponent, data: {test: 'What the fuck man'}, canActivate: [AuthGuard], children: [
+      { path: 'stock', component: StockComponent, resolve: {test: TestResolver} },
       { path: 'suppliers', component: SuppliersComponent },
-      { path: 'ingredients', component: IngredientsComponent },
+      { path: 'ingredients', component: IngredientsComponent, resolve: {test: TestResolver}},
       { path: 'recipes', component: RecipesComponent },
       { path: 'dishes', component: DishesComponent }
     ]
