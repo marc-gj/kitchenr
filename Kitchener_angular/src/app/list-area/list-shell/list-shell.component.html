@@ -1,0 +1,6 @@
+<div fxLayout="column">
+  <span>{{supplier.name}}</span>
+  <span>{{supplier.contact.telephone[0]}}</span>
+  <span>{{supplier.salesReps[0] ? supplier.salesReps[0].firstName : ''}}</span>
+  <span>{{supplier.salesReps[0] ? supplier.salesReps[0].contact.cellphone : ''}}</span>
+</div>

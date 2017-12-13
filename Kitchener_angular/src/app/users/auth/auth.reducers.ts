@@ -10,7 +10,7 @@ const initialState: State = {
   authenticated: false
 };
 
-export function authReducer(state = initialState, action: AuthActions.AuthActions) {
+export function authReducer(state = initialState, action: AuthActions.AuthActions): State {
   switch (action.type) {
     case (AuthActions.CREATE_NEW_USER):
     case (AuthActions.SIGN_IN):

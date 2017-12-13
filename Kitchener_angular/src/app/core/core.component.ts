@@ -2,21 +2,22 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 
 @Component({
-	selector: 'app-core',
-	templateUrl: './core.component.html',
-	styleUrls: ['./core.component.scss']
+  selector: 'app-core',
+  templateUrl: './core.component.html',
+  styleUrls: ['./core.component.scss']
 })
 export class CoreComponent implements OnInit {
 
-	@ViewChild(SidenavComponent) sidenav: SidenavComponent;
+  @ViewChild(SidenavComponent) sidenav: SidenavComponent;
 
-	constructor() { }
+  constructor() { }
 
-	ngOnInit() {
-	}
+  ngOnInit() {
+    console.log(localStorage);
+  }
 
-	toggleSidenav() {
-		this.sidenav.toggle();
-	}
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
 
 }

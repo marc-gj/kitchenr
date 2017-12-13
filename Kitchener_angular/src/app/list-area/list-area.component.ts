@@ -1,20 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromListReducers from './store/list.reducers';
-import { Observable } from 'rxjs/Observable';
 import * as fromApp from '../store/app.reducers';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-list-area',
   templateUrl: './list-area.component.html',
-  styleUrls: ['./list-area.component.css']
+  styleUrls: ['./list-area.component.scss']
 })
 export class ListAreaComponent implements OnInit {
-  private listState$: Observable<fromListReducers.State>;
-  constructor(public store: Store<fromApp.AppState>) {}
+  constructor(public store: Store<fromApp.AppState>, private route: ActivatedRoute) {}
+
+  storeVariable: string;
+  store$: Observable<any>;
 
   ngOnInit() {
-    this.listState$ = this.store.select('list');
+    this.route.data.subscribe((data) => {
+      this.storeVariable = data.page;
+    });
+    this.store$ = this.store.select(`${this.storeVariable}`);
+    this.store$.subscribe((data) => {
+      console.log(data.suppliers);
+    });
+  }
+
+  clicker() {
   }
 
 }

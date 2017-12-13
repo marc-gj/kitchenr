@@ -31,8 +31,9 @@ import { AuthEffects } from './users/auth/auth.effects';
 import { DataStorageEffects } from './datastorage/datastorage.effects';
 import { AuthGuard } from './users/auth/auth-guard.service';
 import { AuthInterceptor } from './users/auth/auth.interceptor';
-import { TestResolver } from './test.resolver';
-import { DataStorageService } from './datastorage/datastorage.service';
+import { CoreResolver } from './core/core.resolver';
+import { SupplierEffects } from './suppliers/store/suppliers.effects';
+import { ListShellComponent } from './list-area/list-shell/list-shell.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DataStorageService } from './datastorage/datastorage.service';
     MessageComponent,
     CoreComponent,
     ListAreaComponent,
-    ListSearchComponent
+    ListSearchComponent,
+    ListShellComponent
   ],
   imports: [
     BrowserModule,
@@ -58,15 +60,14 @@ import { DataStorageService } from './datastorage/datastorage.service';
     MaterialModule,
     FlexLayoutModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, DataStorageEffects])
+    EffectsModule.forRoot([AuthEffects, DataStorageEffects, SupplierEffects])
   ],
   providers: [
     SupplierService,
     MessageService,
     AuthService,
-    DataStorageService,
     AuthGuard,
-    TestResolver,
+    CoreResolver,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

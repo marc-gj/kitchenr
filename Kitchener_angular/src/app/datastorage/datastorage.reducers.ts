@@ -1,8 +1,8 @@
-import * as fromDataStorageActions from './datastorage.actions';
+/* import * as fromDataStorageActions from './datastorage.actions';
 import { Supplier } from '../suppliers/supplier.model';
 
 export interface State {
-  suppliers: any[];
+  suppliers: Supplier[];
 }
 
 const initialState = {
@@ -21,4 +21,4 @@ export function dataStorageReducer(state: State = initialState, action: fromData
     return state;
   }
 
-}
+} */

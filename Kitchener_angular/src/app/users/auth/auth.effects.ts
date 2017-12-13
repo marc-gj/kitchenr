@@ -8,7 +8,6 @@ import * as AuthActions from './auth.actions';
 import { AuthService } from './auth.service';
 import { of } from 'rxjs/observable/of';
 import { Router } from '@angular/router';
-import * as DataStorageActions from '../../datastorage/datastorage.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -24,7 +23,7 @@ export class AuthEffects {
     .switchMap((dataFromServer) => {
       if (dataFromServer.success === true) {
         this.authService.storeJWTInLocalStorage(dataFromServer.token);
-        this.router.navigate(['/core/stock']);
+        this.router.navigate(['/core']);
         return [{
           type: AuthActions.SIGN_IN
         },
@@ -32,9 +31,6 @@ export class AuthEffects {
           type: AuthActions.SET_TOKEN,
           payload: this.authService.getJWTFromLocalStorage().jwt
         },
-        {
-          type: DataStorageActions.LOAD_DATA_FROM_SERVER
-        }
       ];
       }
       return of({
@@ -60,7 +56,7 @@ export class AuthEffects {
 
   @Effect() validateLocalStorageToken$ = this.actions$
   .ofType(AuthActions.VALIDATE_LOCAL_STORAGE_TOKEN)
-  .map((action: AuthActions.ValidateLocalStorageToken) => {
+  .map(() => {
     this.authService.validateJWT();
   });
   }

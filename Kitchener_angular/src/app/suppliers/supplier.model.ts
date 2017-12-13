@@ -1,47 +1,64 @@
-/* import { IContact } from '../shared/contact.model';
-import { SalesRep } from './sales-rep.model'; */
+import { SalesRep } from './sales-rep.model';
+import { IContact } from '../shared/contact.model';
+
+/* import { IContact } from '../shared/contact.model'; */
 
 export class Supplier {
-  /* 	private _id: string; */
-  private _name: string;
-  private _id: string;
-  /* private _contact: IContact;
-  private _salesRep: SalesRep; */
+  protected _id: string;
+  protected _name: string;
+  private _contact: IContact;
+  protected _salesReps: SalesRep[];
 
-  constructor(name: string) {
-    this.name = name;
+  constructor(args: {
+    name: string,
+    _id: string,
+    contact: IContact,
+    salesReps: [{
+      _id: string,
+      firstName: string,
+      lastName: string,
+      contact: IContact
+    }]
+  }) {
+    this.name = args.name;
+    this.id = args._id;
+    this.contact = args.contact;
+    const salesRepArray: SalesRep[] = args.salesReps.map((salesRep) => {
+      return new SalesRep(salesRep);
+    });
+    this.salesReps = salesRepArray;
   }
 
-  get name() {
+  protected get name(): string {
     return this._name;
   }
 
-  set name(name: string) {
+  protected set name(name: string) {
     this._name = name;
   }
 
-  get id() {
+  protected get id(): string {
     return this._id;
   }
 
-  set id(id: string) {
+  protected set id(id: string) {
     this._id = id;
   }
 
-	/* get contact() {
-		return this._contact;
-	}
+  get contact(): IContact {
+    return this._contact;
+  }
 
-	set contact(contact: IContact) {
-		this._contact = contact;
-	}
+  set contact(contact: IContact) {
+    this._contact = contact;
+  }
 
-	get salesRep() {
-		return this._salesRep;
-	}
+  protected get salesReps(): SalesRep[] {
+    return this._salesReps;
+  }
 
-	set salesRep(salesRep: SalesRep) {
-		this._salesRep = salesRep;
-	}
- */
+  protected set salesReps(salesReps: SalesRep[]) {
+    this._salesReps = salesReps;
+  }
+
 }

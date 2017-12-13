@@ -1,51 +1,45 @@
 import { Injectable } from '@angular/core';
-import { SalesRep } from './sales-rep.model';
-import { IContact } from '../shared/contact.model';
 import { Supplier } from './supplier.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from '../messages/message.service';
+import * as serverSettings from '../shared/server.settings';
+import { IContact } from '../shared/contact.model';
 
 
 @Injectable()
 export class SupplierService {
 
-  private supplierList$: Observable<Supplier[]>;
-
-  private apiRoot = 'http://localhost:8080/suppliers';
-
-  private suppliersUrl = {
-    addSupplier: '/newsupplier',
-    addSupplierWSR: '/newsupplierwsr',
-    getSupplierById: '/getsupplierdetails',
-    getSuppliers: '/getallsuppliers',
-    deleteSupplier: '/deletesupplier',
-    patchSupplier: '/updatesupplier'
-  };
-
   constructor(
-    private http: HttpClient,
+    private httpClient: HttpClient,
     private messageService: MessageService) {
   }
 
-  getSuppliers(): Observable<Supplier[]> {
-    return this.http
-      .get<Supplier[]>(this.apiRoot + this.suppliersUrl.getSuppliers)
-      .pipe(
-      tap(suppliers => this.log(`fetched suppliers`)),
-      catchError(this.handleError('getSuppliers', []))
-      );
-  }
-
-  getSupplier(id: string): Observable<Supplier> {
-    const url = `${this.apiRoot}${this.suppliersUrl.getSupplierById}/${id}`;
-    return this.http.get<Supplier>(url)
-      .pipe(
-      tap(_ => this.log(`fetched suppler id = ${id}`)),
-      catchError(this.handleError<Supplier>(`getSupplier id=${id}`))
-      );
+  loadDataFromServer(): Observable<Supplier[]> {
+    return this.httpClient.get<[{
+      name: string,
+      _id: string,
+      contact: IContact,
+      salesReps:
+      [{
+        firstName: string,
+        lastName: string,
+        _id: string,
+        contact: IContact
+      }]
+    }]>(serverSettings.API_ROOT + serverSettings.GET_ALL_SUPPLIERS_FRAGMENT)
+    .map((payload) => {
+      const supplierArray: Supplier[] = payload.map((supplier) => {
+        return new Supplier(supplier);
+      });
+      return supplierArray;
+    })
+    .pipe(
+      tap(res => console.log(res),
+      catchError(this.handleError<any>(`signInWithUsernameAndPassword`))
+    ));
   }
 
   private log(message: string): void {

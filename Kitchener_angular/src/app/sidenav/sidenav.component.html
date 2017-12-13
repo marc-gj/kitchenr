@@ -8,8 +8,7 @@
 			</mat-list-item>
 			<!-- Supplier -->
       <mat-list-item 
-      routerLink="suppliers"
-      (click)="changePage()">
+      routerLink="suppliers">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
 					<span>Suppliers</span>
@@ -38,13 +37,10 @@
       </mat-list-item>
       <p *ngIf="pageData">{{pageData}}</p>
     </mat-nav-list>
-    <span>{{}}</span>
+    <span></span>
 	</mat-sidenav>
 
 	<div class="content" fxLayout="row">
-    
-    <app-list-area></app-list-area>
-		<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 	</div>
-
 </mat-sidenav-container>

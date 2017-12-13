@@ -1,15 +1,23 @@
 <div class="list-area" fxLayout="column" fxLayoutAlign="start">
   <app-list-search class="padding"></app-list-search>
-  <mat-list>
-    <mat-list-item *ngFor="let item of (listState$ | async).list">
-      <span>{{item.name}}</span>
-    </mat-list-item>
-  </mat-list>
-	<button class="new-item-button" mat-button>
-		<div class="add" fxLayout="row" fxLayoutAlign="center center">
-			<mat-icon>add</mat-icon>
-			new {{page}}
-			<span style="width:5px;"></span>
-		</div>
-	</button>
+
+    <mat-nav-list style="overflow:auto; margin-bottom:80px"> 
+      <mat-list-item *ngFor="let supplier of (store$ | async).suppliers;">
+        <app-list-shell [supplier]="supplier"></app-list-shell>
+      </mat-list-item>
+    </mat-nav-list>
+
+
+    <button
+    routerLink="12" (click)="clicker()" class="new-item-button" mat-button>
+      <div class="add" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon>add</mat-icon>
+        new {{(route.data | async).page}}
+        <span style="width:5px;"></span>
+      </div>
+    </button>
+
+</div>
+<div class="content-area">
+  <router-outlet></router-outlet>
 </div>

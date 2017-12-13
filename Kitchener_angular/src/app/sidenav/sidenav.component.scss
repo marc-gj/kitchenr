@@ -8,16 +8,3 @@
   min-width: 200px;
 }
 
-app-list-area {
-	background-color: mat-color($background);
-	display: block;
-	top: 0;
-	bottom: 0;
-	position: absolute;
-  width: 300px;
-	//transform: translate3d(0px, 0px, 0px);
-}
-
-router-outlet {
-  margin-left: 300px;
-}

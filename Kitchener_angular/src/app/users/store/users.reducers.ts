@@ -2,20 +2,15 @@ import { User } from '../user.model';
 import * as UserActions from './users.actions';
 
 export interface State {
-  user: User;
+  users: User[];
 }
 
-const initialState = {
-  user: new User('Marc', 'marc-gj@live.com', 'password')
-};
+const initialState: State = {users: [new User('Marc', 'marc-gj@live.com', 'password')]};
 
-export function usersReducer(state = initialState, action: UserActions.UserActions) {
+export function usersReducer(state = initialState, action: UserActions.UserActions): State {
   switch (action.type) {
     case UserActions.ADD_USER:
-      return {
-        ...state,
-        user: { ...state.user, user: action.payload }
-      };
+      return {...state, users: [action.payload]};
     default:
       return state;
   }
