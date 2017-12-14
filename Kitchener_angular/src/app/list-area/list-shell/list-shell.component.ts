@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Supplier } from '../../suppliers/supplier.model';
 
 @Component({
   selector: 'app-list-shell',
@@ -8,11 +7,12 @@ import { Supplier } from '../../suppliers/supplier.model';
 })
 export class ListShellComponent implements OnInit {
 
-  @Input() supplier: Supplier;
+  @Input() item: any;
 
   constructor() { }
 
   ngOnInit() {
+    /* console.log(this.item); */
   }
 
 }

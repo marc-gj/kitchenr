@@ -1,21 +1,29 @@
 <div class="list-area" fxLayout="column" fxLayoutAlign="start">
-  <app-list-search class="padding"></app-list-search>
+  <!-- <app-list-search class="padding"></app-list-search> -->
+  <mat-form-field class="padding">
+    <input [(ngModel)]="search" matInput placeholder="Search" value="" (keyup)="arraySearcher(searchableArray, search)">
+  </mat-form-field>
 
-    <mat-nav-list style="overflow:auto; margin-bottom:80px"> 
-      <mat-list-item *ngFor="let supplier of (store$ | async).suppliers;">
-        <app-list-shell [supplier]="supplier"></app-list-shell>
+  <mat-nav-list style="overflow:auto; margin-bottom:80px">
+    <div *ngIf="search.length <= 0">
+      <mat-list-item *ngFor="let item of (store$ | async)[storeVariable];">
+        <app-list-shell [item]="item"></app-list-shell>
       </mat-list-item>
-    </mat-nav-list>
+    </div>
+    <div *ngIf="search.length > 0">
+      <mat-list-item *ngFor="let item of filteredArray;">
+        <app-list-shell [item]="item"></app-list-shell>
+      </mat-list-item>
+    </div>
+  </mat-nav-list>
 
-
-    <button
-    routerLink="12" (click)="clicker()" class="new-item-button" mat-button>
-      <div class="add" fxLayout="row" fxLayoutAlign="center center">
-        <mat-icon>add</mat-icon>
-        new {{(route.data | async).page}}
-        <span style="width:5px;"></span>
-      </div>
-    </button>
+  <button routerLink="12" (click)="clicker()" class="new-item-button" mat-button>
+    <div class="add" fxLayout="row" fxLayoutAlign="center center">
+      <mat-icon>add</mat-icon>
+      new {{(route.data | async).page}}
+      <span style="width:5px;"></span>
+    </div>
+  </button>
 
 </div>
 <div class="content-area">

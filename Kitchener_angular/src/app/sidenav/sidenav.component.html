@@ -2,39 +2,39 @@
 	<mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
 		<mat-nav-list>
 			<!-- Stock -->
-			<mat-list-item routerLink="stock">
+			<a mat-list-item routerLink="stock">
 				<mat-icon class="padding">assignment</mat-icon>
 				<span>Stock</span>
-			</mat-list-item>
+			</a>
 			<!-- Supplier -->
-      <mat-list-item 
+      <a mat-list-item 
       routerLink="suppliers">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
 					<span>Suppliers</span>
 				</div>
-			</mat-list-item>
+      </a>
 			<!-- Ingredients -->
-			<mat-list-item routerLink="ingredients">
+			<a mat-list-item routerLink="ingredients">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
 					<span>Ingredients</span>
 				</div>
-			</mat-list-item>
+			</a>
 			<!-- Recipe -->
-			<mat-list-item routerLink="recipes">
+			<a mat-list-item routerLink="recipes">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
 					<span>Recipes</span>
 				</div>
-			</mat-list-item>
+			</a>
 			<!-- Dishes -->
-			<mat-list-item routerLink="dishes">
+			<a mat-list-item routerLink="dishes">
 				<div fxLayoutAlign="center center">
 					<mat-icon class="padding">assignment</mat-icon>
 					<span>Dishes</span>
 				</div>
-      </mat-list-item>
+      </a>
       <p *ngIf="pageData">{{pageData}}</p>
     </mat-nav-list>
     <span></span>

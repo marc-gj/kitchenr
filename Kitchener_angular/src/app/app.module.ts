@@ -13,6 +13,8 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { CoreComponent } from './core/core.component';
@@ -21,7 +23,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MessageComponent } from './messages/message.component';
 
 import { ListAreaComponent } from './list-area/list-area.component';
-import { ListSearchComponent } from './list-area/search/list-search.component';
 
 import { SupplierService } from './suppliers/supplier.service';
 import { MessageService } from './messages/message.service';
@@ -43,7 +44,6 @@ import { ListShellComponent } from './list-area/list-shell/list-shell.component'
     MessageComponent,
     CoreComponent,
     ListAreaComponent,
-    ListSearchComponent,
     ListShellComponent
   ],
   imports: [
@@ -52,6 +52,7 @@ import { ListShellComponent } from './list-area/list-shell/list-shell.component'
     AppRoutingModule,
     HttpClientModule,
     UsersModule,
+    FormsModule,
     SuppliersModule,
     StockModule,
     IngredientsModule,

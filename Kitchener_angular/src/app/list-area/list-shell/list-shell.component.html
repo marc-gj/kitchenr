@@ -1,6 +1,4 @@
-<div fxLayout="column">
-  <span>{{supplier.name}}</span>
-  <span>{{supplier.contact.telephone[0]}}</span>
-  <span>{{supplier.salesReps[0] ? supplier.salesReps[0].firstName : ''}}</span>
-  <span>{{supplier.salesReps[0] ? supplier.salesReps[0].contact.cellphone : ''}}</span>
-</div>
+<h4>{{item.name}}</h4>
+<p mat-line class="detail" *ngIf="item.contact">Office: {{item.contact.telephone}}</p>
+<h5 mat-line *ngIf="item.salesReps[0]">Rep: {{item.salesReps[0].firstName}} {{item.salesReps[0].lastName}}</h5>
+<p mat-line *ngIf="item.salesReps[0]">Cell: {{item.salesReps[0].contact.cellphone}}</p>
