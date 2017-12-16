@@ -1,5 +1,5 @@
 <nav mat-tab-nav-bar>
   <div class="tabs" fxLayout="row">
-    <app-tab *ngFor="let tab of (tabsState$ | async).tabs" [tab]="tab"></app-tab>
+    <app-tab *ngFor="let tab of (tabsState$ | async).tabs; let i = index" [tab]="tab" [index]="i" [activeTab]="(tabsState$ | async).activeTab" (closeTab)="closeTab($event)" (changeTab)="changeTab($event)"></app-tab>
   </div>
 </nav>

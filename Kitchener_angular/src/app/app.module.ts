@@ -37,6 +37,7 @@ import { SupplierEffects } from './suppliers/store/suppliers.effects';
 import { ListShellComponent } from './list-area/list-shell/list-shell.component';
 import { TabsComponent } from './list-area/tabs/tabs.component';
 import { TabComponent } from './list-area/tabs/tab/tab.component';
+import { TabsEffects } from './list-area/tabs/store/tabs.effects';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { TabComponent } from './list-area/tabs/tab/tab.component';
     FlexLayoutModule,
     MatTabsModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, DataStorageEffects, SupplierEffects])
+    EffectsModule.forRoot([AuthEffects, DataStorageEffects, SupplierEffects, TabsEffects])
   ],
   providers: [
     SupplierService,

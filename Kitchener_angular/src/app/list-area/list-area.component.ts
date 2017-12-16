@@ -16,7 +16,7 @@ export class ListAreaComponent implements OnInit, OnDestroy {
   constructor(public store: Store<fromApp.AppState>, private route: ActivatedRoute) { }
   search: string = '';
   routeDataSub: Subscription;
-  storeVariable: string;
+  urlSegment: string; // obtained from the route data;
   store$: Observable<any>;
   storeSub: Subscription;
   searchableArray: Supplier[] = [];
@@ -24,19 +24,21 @@ export class ListAreaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.routeDataSub = this.route.data.subscribe((data) => {
-      this.storeVariable = data.page;
+      this.urlSegment = data.page;
+      console.log(this.urlSegment);
     });
-    this.store$ = this.store.select(`${this.storeVariable}`);
+    this.store$ = this.store.select(`${this.urlSegment}`);
     /* set up subscription to store observable
       puts items into alphabetical order
       populates an array that can be searched with indexof*
       refactor this code to not use an array */
     this.storeSub = this.store$.subscribe((data) => {
-      data[`${this.storeVariable}`].sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
-      this.searchableArray = [...data[`${this.storeVariable}`]];
+      data[`${this.urlSegment}`].sort((a: any, b: any) => (a.name > b.name ? 1 : -1));
+      this.searchableArray = [...data[`${this.urlSegment}`]];
 
     });
   }
+
   clicker() {
   }
 

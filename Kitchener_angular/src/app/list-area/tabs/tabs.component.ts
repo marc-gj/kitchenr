@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromTabs from './store/tabs.reducers';
+import * as fromApp from '../../store/app.reducers';
+
+import * as fromTabsActions from './store/tabs.actions';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-tabs',
@@ -10,15 +14,24 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TabsComponent implements OnInit {
 
-  tabsState$: Observable<Array<{id: string, name: string}>>;
+  @Input() urlSegment: string;
 
-  constructor(private store: Store<fromTabs.State>) { }
+  tabsState$: Observable<fromTabs.State>;
+  tabsSub: Subscription;
+
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.tabsState$ = this.store.select('tabs');
   }
 
+  changeTab(index: number) {
+    this.store.dispatch(new fromTabsActions.ChangeActiveTab(index));
+  }
 
+  closeTab(index: number) {
+    this.store.dispatch(new fromTabsActions.TryCloseTab({index: index, urlSegment: this.urlSegment, tabsState: this.tabsState$}));
+  }
 
   /*
   closeTab(item: Supplier) {
@@ -28,17 +41,6 @@ export class TabsComponent implements OnInit {
     } else {
       this.router.navigateByUrl(`/core/${this.storeVariable}`);
     }
-  }
-
-  removeFromOpenTabsArray(originalArray: Supplier[], item: Supplier): Supplier[] {
-    const array: Supplier[] = originalArray;
-    let index: number;
-    index = array.findIndex((element) => {
-      return element.id === item.id;
-    });
-    array.splice(index, 1);
-    console.log('Array spliced, ' + array);
-    return array;
   } */
 
 }

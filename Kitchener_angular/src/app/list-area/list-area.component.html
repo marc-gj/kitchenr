@@ -6,7 +6,7 @@
   <mat-nav-list style="overflow:auto; margin-bottom:80px">
     <!-- Shows a full list of items based on the data passed with the route -->
     <div *ngIf="search.length <= 0">
-      <mat-list-item *ngFor="let item of (store$ | async)[storeVariable];" [routerLink]="[item.id]" routerLinkActive="active" (click)="openTab(item.name, item.id)">
+      <mat-list-item *ngFor="let item of (store$ | async)[urlSegment];" [routerLink]="[item.id]" routerLinkActive="active" (click)="openTab(item.name, item.id)">
         <app-list-shell [item]="item"></app-list-shell>
       </mat-list-item>
     </div>
@@ -28,7 +28,7 @@
 
 </div>
 <div fxLayout="column" class="content-container">
-  <app-tabs></app-tabs>
+  <app-tabs [urlSegment]="urlSegment"></app-tabs>
   <div fxLayout="column" class="content-area">
     <router-outlet></router-outlet>
   </div>
