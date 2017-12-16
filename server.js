@@ -8,15 +8,15 @@ const config = require('./config/database');
 
 //Connect to the database
 mongoose.connect(config.database, {
-	useMongoClient: true
+  useMongoClient: true
 });
 
 mongoose.connection.on('connected', () => {
-	console.log('Connected to database ' + config.database);
+  console.log('Connected to database ' + config.database);
 });
 
 mongoose.connection.on('error', (err) => {
-	console.log('Database error: ' + err);
+  console.log('Database error: ' + err);
 });
 
 mongoose.Promise = require('bluebird');
@@ -62,9 +62,9 @@ app.use('/suppliers', suppliers);
 app.use('/salesreps', salesReps);
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.listen(port, () => {
-	console.log('Server Started on port ' + port);
+  console.log('Server Started on port ' + port);
 });

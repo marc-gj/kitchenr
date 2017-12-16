@@ -9,6 +9,7 @@ import { SignInComponent } from './users/sign-in/sign-in.component';
 import { CoreComponent } from './core/core.component';
 import { ListAreaComponent } from './list-area/list-area.component';
 import { CoreResolver } from './core/core.resolver';
+import { SuppliersComponent } from './suppliers/suppliers.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -19,7 +20,7 @@ const routes: Routes = [
         { path: ':id', component: StockComponent }
       ] },
       { path: 'suppliers', component: ListAreaComponent, data: {page: 'suppliers'}, children: [
-        /* { path: ':id', component: SuppliersComponent } */
+        { path: ':id', component: SuppliersComponent }
       ]},
       { path: 'ingredients', component: ListAreaComponent, data: {page: 'ingredients'} , children: [
         { path: ':id', component: IngredientsComponent }

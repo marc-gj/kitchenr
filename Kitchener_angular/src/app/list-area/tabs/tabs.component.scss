@@ -1,0 +1,12 @@
+@import '../../../theme.scss';
+
+.tabs {
+  overflow: auto;
+  width:auto;
+}
+
+.mat-tab-nav-bar {
+  background-color: mat-color($background, 800);
+  border-bottom: 0px;
+  box-shadow: 4px 0px 3px black;
+}

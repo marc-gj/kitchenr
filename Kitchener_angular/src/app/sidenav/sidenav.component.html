@@ -1,46 +1,42 @@
 <mat-sidenav-container fxFlex>
-	<mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
-		<mat-nav-list>
-			<!-- Stock -->
-			<a mat-list-item routerLink="stock">
-				<mat-icon class="padding">assignment</mat-icon>
-				<span>Stock</span>
-			</a>
-			<!-- Supplier -->
-      <a mat-list-item 
-      routerLink="suppliers">
-				<div fxLayoutAlign="center center">
-					<mat-icon class="padding">assignment</mat-icon>
-					<span>Suppliers</span>
-				</div>
+  <mat-sidenav #sidenav mode="side" opened="true" class="sidenav">
+    <mat-nav-list>
+      <!-- Stock -->
+      <a mat-list-item routerLink="stock" routerLinkActive="active">
+        <mat-icon class="padding">assignment</mat-icon>
+        <span>Stock</span>
       </a>
-			<!-- Ingredients -->
-			<a mat-list-item routerLink="ingredients">
-				<div fxLayoutAlign="center center">
-					<mat-icon class="padding">assignment</mat-icon>
-					<span>Ingredients</span>
-				</div>
-			</a>
-			<!-- Recipe -->
-			<a mat-list-item routerLink="recipes">
-				<div fxLayoutAlign="center center">
-					<mat-icon class="padding">assignment</mat-icon>
-					<span>Recipes</span>
-				</div>
-			</a>
-			<!-- Dishes -->
-			<a mat-list-item routerLink="dishes">
-				<div fxLayoutAlign="center center">
-					<mat-icon class="padding">assignment</mat-icon>
-					<span>Dishes</span>
-				</div>
+      <!-- Supplier -->
+      <a mat-list-item routerLink="suppliers" routerLinkActive="active">
+        <div fxLayoutAlign="center center">
+          <mat-icon class="padding">assignment</mat-icon>
+          <span>Suppliers</span>
+        </div>
+      </a>
+      <!-- Ingredients -->
+      <a mat-list-item routerLink="ingredients" routerLinkActive="active">
+        <div fxLayoutAlign="center center">
+          <mat-icon class="padding">assignment</mat-icon>
+          <span>Ingredients</span>
+        </div>
+      </a>
+      <!-- Recipe -->
+      <a mat-list-item routerLink="recipes" routerLinkActive="active">
+        <div fxLayoutAlign="center center">
+          <mat-icon class="padding">assignment</mat-icon>
+          <span>Recipes</span>
+        </div>
+      </a>
+      <!-- Dishes -->
+      <a mat-list-item routerLink="dishes" routerLinkActive="active">
+        <div fxLayoutAlign="center center">
+          <mat-icon class="padding">assignment</mat-icon>
+          <span>Dishes</span>
+        </div>
       </a>
       <p *ngIf="pageData">{{pageData}}</p>
     </mat-nav-list>
     <span></span>
-	</mat-sidenav>
-
-	<div class="content" fxLayout="row">
-    <router-outlet></router-outlet>
-	</div>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
 </mat-sidenav-container>

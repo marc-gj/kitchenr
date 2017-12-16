@@ -1,0 +1,33 @@
+@import '../../../../theme.scss';
+
+.close {
+  cursor: pointer;
+  font-size: 16px;
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+.close-hover {
+  visibility: visible;
+}
+
+.active {
+  color: white !important;
+}
+
+.mat-tab-link {
+  opacity: 1;
+  min-width: 60px;
+}
+
+.mat-tab-link:focus {
+  background-color: rgba(0,0,0,0) !important;
+}
+
+
+.mat-tab-link {
+  height: 34px;
+}
+
+

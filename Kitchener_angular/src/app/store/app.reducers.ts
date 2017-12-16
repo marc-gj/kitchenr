@@ -4,6 +4,7 @@ import * as fromAuth from '../users/auth/auth.reducers';
 import * as fromCounter from '../users/auth/counter.reducers';
 /* import * as fromDataStorage from '../datastorage/datastorage.reducers'; */
 import * as fromSuppliers from '../suppliers/store/suppliers.reducers';
+import * as fromTabs from '../list-area/tabs/store/tabs.reducers';
 
 export interface AppState {
   users: fromUsers.State;
@@ -11,6 +12,7 @@ export interface AppState {
   counter: fromCounter.State;
 /*   data: fromDataStorage.State; */
   suppliers: fromSuppliers.State;
+  tabs: fromTabs.State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -18,5 +20,6 @@ export const reducers: ActionReducerMap<AppState> = {
   auth: fromAuth.authReducer,
   counter: fromCounter.counterReducer,
 /*   data: fromDataStorage.dataStorageReducer, */
-  suppliers: fromSuppliers.suppliersReducer
+  suppliers: fromSuppliers.suppliersReducer,
+  tabs: fromTabs.tabsReducer
 };

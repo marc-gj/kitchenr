@@ -3,21 +3,22 @@
   <mat-form-field class="padding">
     <input [(ngModel)]="search" matInput placeholder="Search" value="" (keyup)="arraySearcher(searchableArray, search)">
   </mat-form-field>
-
   <mat-nav-list style="overflow:auto; margin-bottom:80px">
+    <!-- Shows a full list of items based on the data passed with the route -->
     <div *ngIf="search.length <= 0">
-      <mat-list-item *ngFor="let item of (store$ | async)[storeVariable];">
+      <mat-list-item *ngFor="let item of (store$ | async)[storeVariable];" [routerLink]="[item.id]" routerLinkActive="active" (click)="openTab(item.name, item.id)">
         <app-list-shell [item]="item"></app-list-shell>
       </mat-list-item>
     </div>
+    <!-- Shows a filtered array of the above items if the user is searching -->
     <div *ngIf="search.length > 0">
-      <mat-list-item *ngFor="let item of filteredArray;">
+      <mat-list-item *ngFor="let item of filteredArray;" [routerLink]="[item.id]" routerLinkActive="active" (click)="openTab(item.name, item.id)">
         <app-list-shell [item]="item"></app-list-shell>
       </mat-list-item>
     </div>
   </mat-nav-list>
 
-  <button routerLink="12" (click)="clicker()" class="new-item-button" mat-button>
+  <button (click)="clicker()" class="new-item-button" mat-button>
     <div class="add" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon>add</mat-icon>
       new {{(route.data | async).page}}
@@ -26,6 +27,9 @@
   </button>
 
 </div>
-<div class="content-area">
-  <router-outlet></router-outlet>
+<div fxLayout="column" class="content-container">
+  <app-tabs></app-tabs>
+  <div fxLayout="column" class="content-area">
+    <router-outlet></router-outlet>
+  </div>
 </div>

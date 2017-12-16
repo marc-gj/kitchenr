@@ -30,27 +30,27 @@ mat-icon {
 	//transform: translate3d(0px, 0px, 0px);
 }
 
+.content-container {
+  display: block;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+  left: 300px;
+  right: 0;
+  overflow: hidden;
+}
+
 .content-area {
-  margin-left: 300px;
+  display: flex;
+	top: 0;
+  bottom: 0;
+  left: 0;
+	position: relative;
+  right: 0;
+  overflow: auto;
 }
 
 mat-list-item {
   height: 180px !important;
 }
 
-::-webkit-scrollbar-track
-{
-  visibility: hidden;
-}
-
-::-webkit-scrollbar
-{
-	width: 10px;
-	visibility: hidden;
-}
-
-::-webkit-scrollbar-thumb
-{
-	border-radius: 1px;
-  background-color: #555;
-}

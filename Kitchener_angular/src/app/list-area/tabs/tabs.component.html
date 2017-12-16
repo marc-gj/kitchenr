@@ -1,0 +1,5 @@
+<nav mat-tab-nav-bar>
+  <div class="tabs" fxLayout="row">
+    <app-tab *ngFor="let tab of (tabsState$ | async).tabs" [tab]="tab"></app-tab>
+  </div>
+</nav>

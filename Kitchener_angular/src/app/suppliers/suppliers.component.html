@@ -1,0 +1,55 @@
+    <h2 class="padding">{{(supplierState$ | async).name}}</h2>
+    <div class="padding">
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Office</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngIf="editMode===false">
+          <p>{{(supplierState$ | async).contact.address}}</p>
+          <p>{{(supplierState$ | async).contact.telephone}}</p>
+          <p>{{(supplierState$ | async).contact.fax}}</p>
+          <p>{{(supplierState$ | async).contact.email}}</p>
+        </div>
+        <div *ngIf="editMode===true">
+          <mat-form-field>
+            <input matInput placeholder="Address" value="{{(supplierState$ | async).contact.address}}">
+          </mat-form-field>
+        </div>
+          <mat-action-row>
+            <button *ngIf="editMode===true" mat-button (click)="editMode=false">Save</button>
+            <button *ngIf="editMode===true" mat-button (click)="editMode=false">Cancel</button>            
+            <button *ngIf="editMode===false" mat-button (click)="editMode=true">Edit</button>
+          </mat-action-row>
+      </mat-expansion-panel>
+    </div>
+    <div class="padding">
+      <mat-expansion-panel [expanded]="(supplierState$ | async).salesReps[0] ? true : false"> 
+        <mat-expansion-panel-header>
+          <mat-panel-title>Sales representative</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngIf="(supplierState$ | async).salesReps[0]">
+          <p>{{(supplierState$ | async).salesReps[0].firstName}} {{(supplierState$ | async).salesReps[0].lastName}}</p>
+          <p>{{(supplierState$ | async).salesReps[0].contact.telephone}}</p>
+          <p>{{(supplierState$ | async).salesReps[0].contact.cellphone}}</p>
+          <p>{{(supplierState$ | async).salesReps[0].contact.email}}</p>
+        </div>
+      </mat-expansion-panel>
+    </div>
+    <div class="padding">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Outstanding Invoices
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </div>
+    <div class="padding">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Paid Invoices
+          </mat-panel-title> 
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </div>

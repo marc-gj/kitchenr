@@ -1,0 +1,4 @@
+<a fxLayout="row" mat-tab-link (click)="navigate(tab.id)" (mouseenter)="hover=true" (mouseleave)="hover=false">
+  {{tab.name}}
+  <mat-icon [class.close-hover]="hover===true" class="close">close</mat-icon>
+</a>

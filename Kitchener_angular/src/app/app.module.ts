@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 import { AppComponent } from './app.component';
@@ -21,7 +22,6 @@ import { CoreComponent } from './core/core.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MessageComponent } from './messages/message.component';
-
 import { ListAreaComponent } from './list-area/list-area.component';
 
 import { SupplierService } from './suppliers/supplier.service';
@@ -35,6 +35,8 @@ import { AuthInterceptor } from './users/auth/auth.interceptor';
 import { CoreResolver } from './core/core.resolver';
 import { SupplierEffects } from './suppliers/store/suppliers.effects';
 import { ListShellComponent } from './list-area/list-shell/list-shell.component';
+import { TabsComponent } from './list-area/tabs/tabs.component';
+import { TabComponent } from './list-area/tabs/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ListShellComponent } from './list-area/list-shell/list-shell.component'
     MessageComponent,
     CoreComponent,
     ListAreaComponent,
-    ListShellComponent
+    ListShellComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,7 @@ import { ListShellComponent } from './list-area/list-shell/list-shell.component'
     DishesModule,
     MaterialModule,
     FlexLayoutModule,
+    MatTabsModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects, DataStorageEffects, SupplierEffects])
   ],
@@ -69,7 +74,7 @@ import { ListShellComponent } from './list-area/list-shell/list-shell.component'
     AuthService,
     AuthGuard,
     CoreResolver,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
