@@ -5,7 +5,6 @@ import * as fromApp from '../../store/app.reducers';
 
 import * as fromTabsActions from './store/tabs.actions';
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-tabs',
@@ -17,7 +16,6 @@ export class TabsComponent implements OnInit {
   @Input() urlSegment: string;
 
   tabsState$: Observable<fromTabs.State>;
-  tabsSub: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -32,15 +30,5 @@ export class TabsComponent implements OnInit {
   closeTab(index: number) {
     this.store.dispatch(new fromTabsActions.TryCloseTab({index: index, urlSegment: this.urlSegment, tabsState: this.tabsState$}));
   }
-
-  /*
-  closeTab(item: Supplier) {
-    this.openTabs = this.removeFromOpenTabsArray(this.openTabs, item);
-    if (this.openTabs[0]) {
-      this.router.navigateByUrl(`/core/${this.storeVariable}/${this.openTabs[0].id}` );
-    } else {
-      this.router.navigateByUrl(`/core/${this.storeVariable}`);
-    }
-  } */
 
 }

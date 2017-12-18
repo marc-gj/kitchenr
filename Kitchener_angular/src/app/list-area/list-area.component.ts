@@ -39,7 +39,9 @@ export class ListAreaComponent implements OnInit, OnDestroy {
     });
   }
 
-  clicker() {
+  openTempTab(name: string, id: string): void {
+    console.log('Hello ' + name + ' ' + id);
+    this.store.dispatch(new fromTabs.NewTempTab({name, id}));
   }
 
   openTab(name: string, id: string): void {
@@ -52,13 +54,8 @@ export class ListAreaComponent implements OnInit, OnDestroy {
     const thisArray: Supplier[] = [];
     if (term.length >= 1) {
       array.forEach((item) => {
-        let match = 0;
-        for (let i = 0; i < term.length; i++) {
-          if (item.name.charAt(i).toLocaleLowerCase() === term.charAt(i).toLocaleLowerCase()) {
-            match++;
-          }
-        }
-        if (match === term.length) {
+        const match = item.searchArray().includes(term.toLocaleLowerCase());
+        if (match === true) {
           thisArray.push(item);
         }
       });

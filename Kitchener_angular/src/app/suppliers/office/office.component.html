@@ -1,0 +1,30 @@
+<div *ngIf="!supplier.state.editMode">
+  <p>{{supplier.contact.address}}</p>
+  <p>{{supplier.contact.telephone}}</p>
+  <p>{{supplier.contact.fax}}</p>
+  <p>{{supplier.contact.email}}</p>
+ 
+</div>
+<div *ngIf="supplier.state.editMode" fxLayout="column">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Address" value="{{supplier.contact.address}}">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Telephone" value="{{supplier.contact.telephone}}">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Fax" value="{{supplier.contact.fax}}">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Email" value="{{supplier.contact.email}}">
+    </mat-form-field>
+  </div>
+</div>
+<app-form-actions [editMode]="supplier.state.editMode" (edit)="onEdit()" (save)="onSave()" (cancel)="onCancel()"></app-form-actions>

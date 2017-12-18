@@ -1,0 +1,18 @@
+<div *ngIf="editMode==fasle">
+  <p>{{supplier.salesReps[0].firstName}} {{supplier.salesReps[0].lastName}}</p>
+  <p>{{supplier.salesReps[0].contact.email}}</p>
+  <p>{{supplier.salesReps[0].contact.cellphone}}</p>
+  <p>{{supplier.salesReps[0].contact.telephone}}</p>
+  <p>{{supplier.salesReps[0].contact.fax}}</p>
+</div>
+
+<div *ngIf="editMode===true">
+  <mat-form-field>
+    <input matInput placeholder="First Name" value="{{supplier.salesReps[0].firstName}}">
+    <input matInput placeholder="Last Name" value="{{supplier.salesReps[0].lastName}}">
+    <input matInput placeholder="Email" value="{{supplier.salesReps[0].email}}">
+    <input matInput placeholder="Cellphone" value="{{supplier.salesReps[0].cellphone}}">
+    <input matInput placeholder="Telephone" value="{{supplier.salesReps[0].telephone}}">
+    <input matInput placeholder="Fax" value="{{supplier.salesReps[0].fax}}">
+  </mat-form-field>
+</div>

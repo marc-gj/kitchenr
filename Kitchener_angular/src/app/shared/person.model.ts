@@ -51,4 +51,9 @@ export abstract class Person {
   protected set contact(contact: IContact) {
     this._contact = contact;
   }
+
+  searchArray(): string {
+    const searchString = this.firstName + this.lastName + this.contact.cellphone + this.contact.email + this.contact.telephone;
+    return searchString;
+  }
 }

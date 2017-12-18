@@ -8,6 +8,7 @@ export class Supplier {
   protected _name: string;
   private _contact: IContact;
   protected _salesReps: SalesRep[];
+  protected _state: { editMode: boolean };
 
   constructor(args: {
     name: string,
@@ -27,21 +28,22 @@ export class Supplier {
       return new SalesRep(salesRep);
     });
     this.salesReps = salesRepArray;
+    this.state = { editMode: false };
   }
 
-  protected get name(): string {
+  get name(): string {
     return this._name;
   }
 
-  protected set name(name: string) {
+  set name(name: string) {
     this._name = name;
   }
 
-  protected get id(): string {
+  get id(): string {
     return this._id;
   }
 
-  protected set id(id: string) {
+  set id(id: string) {
     this._id = id;
   }
 
@@ -53,12 +55,32 @@ export class Supplier {
     this._contact = contact;
   }
 
-  protected get salesReps(): SalesRep[] {
+  get salesReps(): SalesRep[] {
     return this._salesReps;
   }
 
-  protected set salesReps(salesReps: SalesRep[]) {
+  set salesReps(salesReps: SalesRep[]) {
     this._salesReps = salesReps;
+  }
+
+  get state() {
+    return this._state;
+  }
+
+  set state(state: { editMode: boolean }) {
+    this._state = state;
+  }
+
+  searchArray(): string {
+    let searchString: string =
+      this.name +
+      this.contact.cellphone +
+      this.contact.email +
+      this.contact.telephone;
+    if (this.salesReps[0]) {
+      searchString += this.salesReps[0].searchArray();
+    }
+    return searchString.toLocaleLowerCase();
   }
 
 }

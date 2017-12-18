@@ -23,8 +23,12 @@ export class TabComponent implements OnInit {
   }
 
   navigate(id: string, index: number) {
-    this.router.navigate([`${id}`], { relativeTo: this.route });
-    this.changeTab.emit(index);
+    if (index === this.activeTab) {
+      this.router.navigate([`${id}`], { relativeTo: this.route });
+    } else {
+      this.router.navigate([`${id}`], { relativeTo: this.route });
+      this.changeTab.emit(index);
+    }
   }
 
   onCloseTab(index: number) {

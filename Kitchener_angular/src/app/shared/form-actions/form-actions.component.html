@@ -1,0 +1,7 @@
+<mat-action-row *ngIf="!editMode">
+  <button mat-button (click)="onEdit()">Edit</button>
+</mat-action-row>
+<mat-action-row *ngIf="editMode">
+  <button mat-button (click)="onSave()">Save</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</mat-action-row>

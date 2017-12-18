@@ -1,4 +1,15 @@
-<a [class.active]="index===activeTab" fxLayout="row" mat-tab-link (mouseenter)="hover=true" (mouseleave)="hover=false" (click)="navigate(tab.id, index)">
+<a 
+  [class.tempTab]="index===-1" 
+  [class.active]="index===activeTab" 
+  fxLayout="row" 
+  mat-tab-link 
+  (mouseenter)="hover=true" 
+  (mouseleave)="hover=false" 
+  (click)="navigate(tab.id, index)">
   {{tab.name}}
-  <mat-icon [class.close-hover]="hover===true" class="close" (click)="onCloseTab(index)">close</mat-icon>
+
+  <mat-icon 
+    [class.close-hover]="hover===true || index===activeTab" 
+    class="close" 
+    (click)="onCloseTab(index)">close</mat-icon>
 </a>
