@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Supplier } from './supplier.model';
+import * as fromTabs from '../list-area/tabs/store/tabs.actions';
 import * as fromApp from '../store/app.reducers';
 import * as fromSuppliers from './store/suppliers.actions';
 import { Observable } from 'rxjs/Observable';
@@ -26,27 +27,30 @@ export class SuppliersComponent implements OnInit, OnDestroy {
       uses the id paramater to extract specific supplier for
       use in the component */
     this.sub = this.route.params.subscribe((data) => {
-      this.supplierState$ = this.store.select('suppliers').map((array) => {
-        const supplier = array.suppliers.find((element) => {
-          return element.id === data.id;
-        });
-        this.index = array.suppliers.indexOf(supplier);
-        console.log(this.index);
+      this.supplierState$ = this.store.select('suppliers').map((state) => {
+        console.log('calling');
+        const supplier: Supplier = state.suppliers.find(element => element.id === data.id);
+        const index: number = state.suppliers.indexOf(supplier);
+        this.index = index;
         return supplier;
       });
     });
   }
 
-  edit() {
-    this.store.dispatch(new fromSuppliers.SetEditMode(this.index));
+  edit(supplier: Supplier) {
+    this.store.dispatch(new fromTabs.NewTab({name: supplier.name, id: supplier.id}));
+    this.store.dispatch(new fromSuppliers.SetEditMode(supplier.id));
   }
 
-  save(supplier: Supplier) {
-    this.store.dispatch(new fromSuppliers.UpdateSupplier({supplier: supplier, index: this.index}));
+  updateEditingSupplier() {
   }
 
-  cancel() {
-    this.store.dispatch(new fromSuppliers.CancelEdit(this.index));
+  save(form: any) {
+    console.log(form);
+  }
+
+  cancel(id: string) {
+    this.store.dispatch(new fromSuppliers.CancelEdit(id));
   }
 
   ngOnDestroy() {

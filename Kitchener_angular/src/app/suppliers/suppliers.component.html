@@ -3,15 +3,19 @@
       <mat-expansion-panel [expanded]="true">
 
         <mat-expansion-panel-header>
-          <mat-panel-title>Office</mat-panel-title>
+          <mat-panel-title>
+            Office
+            <span *ngIf="(supplierState$ | async).state.editMode">***</span>
+          </mat-panel-title>
         </mat-expansion-panel-header>
 
         <app-office 
           [supplier]="(supplierState$ | async)"
           [index]="index"
-          (edit)="edit()"
+          (update)="updateEditingSupplier($event)"
+          (edit)="edit($event)"
           (save)="save($event)"
-          (cancel)="cancel()"
+          (cancel)="cancel($event)"
           ></app-office>
 
       </mat-expansion-panel>

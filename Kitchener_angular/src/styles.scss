@@ -40,3 +40,13 @@ mat-toolbar {
 	border-radius: 1px;
   background-color: #555;
 }
+
+.mat-input-element:disabled {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.mat-form-field-disabled .mat-form-field-underline {
+  background-image: 0 !important;
+  background-size: 0 !important;
+  background-repeat: 0 !important;
+}

@@ -20,35 +20,35 @@ export abstract class Person {
     this.contact = args.contact;
   }
 
-  protected get id(): string {
+  get id(): string {
     return this._id;
   }
 
-  protected set id(id: string) {
+  set id(id: string) {
     this._id = id;
   }
 
-  protected get firstName(): string {
+  get firstName(): string {
     return this._firstName;
   }
 
-  protected set firstName(firstName: string) {
+  set firstName(firstName: string) {
     this._firstName = firstName;
   }
 
-  protected get lastName(): string {
+  get lastName(): string {
     return this._lastName;
   }
 
-  protected set lastName(lastName: string) {
+  set lastName(lastName: string) {
     this._lastName = lastName;
   }
 
-  protected get contact(): IContact {
+  get contact(): IContact {
     return this._contact;
   }
 
-  protected set contact(contact: IContact) {
+  set contact(contact: IContact) {
     this._contact = contact;
   }
 

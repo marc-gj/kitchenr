@@ -4,11 +4,11 @@ import { IContact } from '../shared/contact.model';
 /* import { IContact } from '../shared/contact.model'; */
 
 export class Supplier {
-  protected _id: string;
-  protected _name: string;
+  protected _id: string = '';
+  protected _name: string = '';
   private _contact: IContact;
   protected _salesReps: SalesRep[];
-  protected _state: { editMode: boolean };
+  protected _state: { editMode: boolean } = { editMode: false };
 
   constructor(args: {
     name: string,
@@ -74,9 +74,9 @@ export class Supplier {
   searchArray(): string {
     let searchString: string =
       this.name +
-      this.contact.cellphone +
       this.contact.email +
-      this.contact.telephone;
+      this.contact.telephone +
+      this.contact.fax;
     if (this.salesReps[0]) {
       searchString += this.salesReps[0].searchArray();
     }

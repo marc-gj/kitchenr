@@ -40,12 +40,10 @@ export class ListAreaComponent implements OnInit, OnDestroy {
   }
 
   openTempTab(name: string, id: string): void {
-    console.log('Hello ' + name + ' ' + id);
     this.store.dispatch(new fromTabs.NewTempTab({name, id}));
   }
 
   openTab(name: string, id: string): void {
-    console.log('Hello ' + name + ' ' + id);
     this.store.dispatch(new fromTabs.NewTab({name, id}));
   }
 

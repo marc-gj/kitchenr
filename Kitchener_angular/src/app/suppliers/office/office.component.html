@@ -1,30 +1,43 @@
-<div *ngIf="!supplier.state.editMode">
-  <p>{{supplier.contact.address}}</p>
-  <p>{{supplier.contact.telephone}}</p>
-  <p>{{supplier.contact.fax}}</p>
-  <p>{{supplier.contact.email}}</p>
- 
-</div>
-<div *ngIf="supplier.state.editMode" fxLayout="column">
+<form [formGroup]="officeForm">
   <div>
     <mat-form-field>
-      <input matInput placeholder="Address" value="{{supplier.contact.address}}">
+      <input 
+        matInput 
+        formControlName="address"
+        placeholder="Address"
+        (change)="updateEditingSupplier()"
+        >
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
-      <input matInput placeholder="Telephone" value="{{supplier.contact.telephone}}">
+      <input 
+        matInput
+        formControlName="telephone" 
+        placeholder="Telephone" 
+        (change)="updateEditingSupplier()"
+        >
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
-      <input matInput placeholder="Fax" value="{{supplier.contact.fax}}">
+      <input 
+        matInput 
+        formControlName="fax"
+        placeholder="Fax" 
+        (change)="updateEditingSupplier()"
+        >
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
-      <input matInput placeholder="Email" value="{{supplier.contact.email}}">
+      <input 
+        matInput
+        formControlName="email" 
+        placeholder="Email"
+        (change)="updateEditingSupplier()"
+        >
     </mat-form-field>
   </div>
-</div>
 <app-form-actions [editMode]="supplier.state.editMode" (edit)="onEdit()" (save)="onSave()" (cancel)="onCancel()"></app-form-actions>
+</form>
