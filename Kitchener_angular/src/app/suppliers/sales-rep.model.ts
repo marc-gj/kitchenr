@@ -1,5 +1,5 @@
 import { Person } from '../shared/person.model';
-import { IContact } from '../shared/contact.model';
+import { Contact } from '../shared/contact.model';
 
 
 export class SalesRep extends Person {
@@ -9,7 +9,7 @@ export class SalesRep extends Person {
     _id: string,
     firstName: string,
     lastName: string,
-    contact: IContact
+    contact: Contact
   }) {
     super (args);
    }

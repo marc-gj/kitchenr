@@ -11,6 +11,7 @@
 
         <app-office 
           [supplier]="(supplierState$ | async)"
+          [supplierEdit]="(supplierEditState$ | async)"
           [index]="index"
           (update)="updateEditingSupplier($event)"
           (edit)="edit($event)"

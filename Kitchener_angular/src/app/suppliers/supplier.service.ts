@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from '../messages/message.service';
 import * as serverSettings from '../shared/server.settings';
-import { IContact } from '../shared/contact.model';
+import { Contact } from '../shared/contact.model';
 
 
 @Injectable()
@@ -21,13 +21,13 @@ export class SupplierService {
     return this.httpClient.get<[{
       name: string,
       _id: string,
-      contact: IContact,
+      contact: Contact,
       salesReps:
       [{
         firstName: string,
         lastName: string,
         _id: string,
-        contact: IContact
+        contact: Contact
       }]
     }]>(serverSettings.API_ROOT + serverSettings.GET_ALL_SUPPLIERS_FRAGMENT)
     .map((payload) => {

@@ -1,17 +1,17 @@
-import { IContact } from './contact.model';
+import { Contact } from './contact.model';
 
 export abstract class Person {
   protected _id: string;
   protected _firstName: string;
   protected _lastName: string;
-  private _contact: IContact;
+  private _contact: Contact;
 
   constructor(
               args: {
                 _id: string,
                 firstName: string,
                 lastName: string,
-                contact: IContact
+                contact: Contact
               }
   ) {
     this.id = args._id;
@@ -44,11 +44,11 @@ export abstract class Person {
     this._lastName = lastName;
   }
 
-  get contact(): IContact {
+  get contact(): Contact {
     return this._contact;
   }
 
-  set contact(contact: IContact) {
+  set contact(contact: Contact) {
     this._contact = contact;
   }
 

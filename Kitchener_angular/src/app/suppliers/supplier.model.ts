@@ -1,24 +1,24 @@
 import { SalesRep } from './sales-rep.model';
-import { IContact } from '../shared/contact.model';
+import { Contact } from '../shared/contact.model';
 
-/* import { IContact } from '../shared/contact.model'; */
+/* import { Contact } from '../shared/contact.model'; */
 
 export class Supplier {
   protected _id: string = '';
   protected _name: string = '';
-  private _contact: IContact;
+  private _contact: Contact;
   protected _salesReps: SalesRep[];
   protected _state: { editMode: boolean } = { editMode: false };
 
   constructor(args: {
     name: string,
     _id: string,
-    contact: IContact,
+    contact: Contact,
     salesReps: [{
       _id: string,
       firstName: string,
       lastName: string,
-      contact: IContact
+      contact: Contact
     }]
   }) {
     this.name = args.name;
@@ -47,11 +47,11 @@ export class Supplier {
     this._id = id;
   }
 
-  get contact(): IContact {
+  get contact(): Contact {
     return this._contact;
   }
 
-  set contact(contact: IContact) {
+  set contact(contact: Contact) {
     this._contact = contact;
   }
 

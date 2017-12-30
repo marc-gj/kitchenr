@@ -7,6 +7,8 @@ import * as fromSuppliers from './store/suppliers.actions';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import { OfficeEdit } from './office/office.component';
+import { of } from 'rxjs/observable/of';
 
 @Component({
   selector: 'app-suppliers',
@@ -16,6 +18,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class SuppliersComponent implements OnInit, OnDestroy {
 
   supplierState$: Observable<Supplier | undefined>;
+  supplierEditState$: Observable<OfficeEdit>;
   sub: Subscription;
   index: number;
 
@@ -28,21 +31,25 @@ export class SuppliersComponent implements OnInit, OnDestroy {
       use in the component */
     this.sub = this.route.params.subscribe((data) => {
       this.supplierState$ = this.store.select('suppliers').map((state) => {
-        console.log('calling');
         const supplier: Supplier = state.suppliers.find(element => element.id === data.id);
         const index: number = state.suppliers.indexOf(supplier);
         this.index = index;
         return supplier;
       });
+      this.supplierEditState$ = this.store.select('suppliers').map((state) => {
+        const supplierEdit: OfficeEdit = state.suppliersEdit.find(element => element.id === data.id);
+        return supplierEdit;
+      });
     });
   }
 
-  edit(supplier: Supplier) {
-    this.store.dispatch(new fromTabs.NewTab({name: supplier.name, id: supplier.id}));
-    this.store.dispatch(new fromSuppliers.SetEditMode(supplier.id));
+  edit(supplierEdit: OfficeEdit) {
+    this.store.dispatch(new fromTabs.NewTab({name: supplierEdit.name, id: supplierEdit.id}));
+    this.store.dispatch(new fromSuppliers.SetEditMode(supplierEdit));
   }
 
-  updateEditingSupplier() {
+  updateEditingSupplier(supplierEdit: OfficeEdit) {
+    this.store.dispatch(new fromSuppliers.UpdateSupplierEdit(supplierEdit));
   }
 
   save(form: any) {

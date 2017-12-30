@@ -1,7 +1,7 @@
-export interface IContact {
-  address: string;
-  telephone: number[];
-  email: string[];
+export interface Contact {
+  address?: string;
+  telephone?: number[];
+  email?: string[];
   cellphone?: number[];
   fax?: number[];
   facebook?: string;
