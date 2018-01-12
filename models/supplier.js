@@ -23,7 +23,6 @@ const supplierSchema = mongoose.Schema(
 
 const Supplier = module.exports = mongoose.model('Supplier', supplierSchema);
 
-// Adds new stock item to db
 // The newSuppler and newSalesRep generate ObjectIds on the route before being saved.
 module.exports.addSupplier = function (newSupplier, callback) {
   // Pushes the sales rep onto the salesReps array on the supplier. 
