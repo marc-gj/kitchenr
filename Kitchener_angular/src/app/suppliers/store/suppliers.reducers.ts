@@ -1,10 +1,10 @@
 import { Supplier } from '../supplier.model';
 import * as fromSupplierActions from './suppliers.actions';
-import { OfficeEdit } from '../office/office.component';
+import { OfficeForm } from '../office/office.component';
 
 export interface State {
   suppliers: Supplier[];
-  suppliersEdit: OfficeEdit[];
+  suppliersEdit: OfficeForm[];
 }
 
 const initialState: State = { suppliers: [], suppliersEdit: [] };
@@ -20,7 +20,12 @@ export function suppliersReducer(state = initialState, action: fromSupplierActio
         suppliers: [...action.payload]
       };
       case fromSupplierActions.SET_EDIT_MODE:
-      let supplier: Supplier = state.suppliers.find(element => element.id === action.payload.id);
+      let supplier: Supplier | undefined = state.suppliers.find(element => element.id === action.payload.id);
+      if (typeof supplier === 'undefined') {
+        return {
+          ...state
+        };
+      }
       supplier.state.editMode = true;
       return {
         ...state,
@@ -28,8 +33,13 @@ export function suppliersReducer(state = initialState, action: fromSupplierActio
       };
       case fromSupplierActions.CANCEL_EDIT:
       supplier = state.suppliers.find(element => element.id === action.payload);
+      if (typeof supplier === 'undefined') {
+        return {
+          ...state
+        };
+      }
       supplier.state.editMode = false;
-      let supplierEditArray: OfficeEdit[] = state.suppliersEdit.filter(element => element.id !== action.payload);
+      let supplierEditArray: OfficeForm[] = state.suppliersEdit.filter(element => element.id !== action.payload);
       return {
         ...state,
         suppliersEdit: [...supplierEditArray]

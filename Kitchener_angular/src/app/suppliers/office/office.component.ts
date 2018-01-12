@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Supplier } from '../supplier.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Contact } from '../../shared/contact.model';
 import 'rxjs/add/operator/debounceTime';
-export interface OfficeEdit {
+export interface OfficeForm {
   id: string;
   name: string;
   telephone: number[];
@@ -19,9 +18,9 @@ export interface OfficeEdit {
 export class OfficeComponent implements OnInit, OnChanges {
   @Input() supplier: Supplier;
   @Input() index: number;
-  @Input() supplierEdit: OfficeEdit;
-  @Output() update = new EventEmitter<OfficeEdit>();
-  @Output() edit = new EventEmitter<OfficeEdit>();
+  @Input() supplierEdit: OfficeForm;
+  @Output() update = new EventEmitter<OfficeForm>();
+  @Output() edit = new EventEmitter<OfficeForm>();
   @Output() save = new EventEmitter<Supplier>();
   @Output() cancel = new EventEmitter<string>();
   private officeForm: FormGroup;
@@ -45,16 +44,15 @@ export class OfficeComponent implements OnInit, OnChanges {
   /* look into optimizing by sending only what has changed instead of the entire form */
   updateEditingSupplier() {
     console.log('called updateEditingSupplier');
-    const supplierEdit: OfficeEdit = { ...this.officeForm.value, id: this.supplier.id, name: this.supplier.name };
+    const supplierEdit: OfficeForm = { ...this.officeForm.value, id: this.supplier.id, name: this.supplier.name };
     this.update.emit(supplierEdit);
   }
   onEdit() {
-    const supplierEdit: OfficeEdit = { ...this.officeForm.value, id: this.supplier.id, name: this.supplier.name };
+    const supplierEdit: OfficeForm = { ...this.officeForm.value, id: this.supplier.id, name: this.supplier.name };
     this.edit.emit(supplierEdit);
     this.setForm();
   }
   onSave() {
-    console.log(this.officeForm.value);
     this.save.emit(this.officeForm.value);
     this.setForm();
   }

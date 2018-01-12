@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Supplier } from '../supplier.model';
-import { OfficeEdit } from '../office/office.component';
+import { OfficeForm } from '../office/office.component';
 
 export const FETCH_SUPPLIERS_FROM_SERVER = 'FETCH_SUPPLIERS_FROM_SERVER';
 export const SET_SUPPLIERS_FROM_SERVER = 'SET_SUPPLIERS_FROM_SERVER';
@@ -9,6 +9,7 @@ export const DESTROY_SUPPLIER = 'DESTROY_SUPPLIER';
 export const SET_EDIT_MODE = 'SET_EDIT_MODE';
 export const CANCEL_EDIT = 'CANCEL_EDIT';
 export const UPDATE_SUPPLIER_EDIT = 'UPDATE_SUPPLIER_EDIT';
+export const UPDATE_SUPPLIER = 'UPDATE_SUPPLIER';
 
 export class FetchSuppliersFromServer implements Action {
   readonly type = FETCH_SUPPLIERS_FROM_SERVER;
@@ -31,7 +32,7 @@ export class DestroySupplier implements Action {
 
 export class SetEditMode implements Action {
   readonly type = SET_EDIT_MODE;
-  constructor(public payload: OfficeEdit) { }
+  constructor(public payload: OfficeForm) { }
 }
 
 export class CancelEdit implements Action {
@@ -41,7 +42,12 @@ export class CancelEdit implements Action {
 
 export class UpdateSupplierEdit implements Action {
   readonly type = UPDATE_SUPPLIER_EDIT;
-  constructor(public payload: OfficeEdit) {}
+  constructor(public payload: OfficeForm) {}
+}
+
+export class UpdateSupplier implements Action {
+  readonly type = UPDATE_SUPPLIER;
+  constructor(public payload: Supplier) {}
 }
 
 
@@ -52,4 +58,5 @@ export type SupplierActions =
   DestroySupplier |
   SetEditMode |
   CancelEdit |
-  UpdateSupplierEdit;
+  UpdateSupplierEdit |
+  UpdateSupplier;

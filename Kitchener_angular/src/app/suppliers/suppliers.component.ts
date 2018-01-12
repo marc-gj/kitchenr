@@ -7,8 +7,7 @@ import * as fromSuppliers from './store/suppliers.actions';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { OfficeEdit } from './office/office.component';
-import { of } from 'rxjs/observable/of';
+import { OfficeForm } from './office/office.component';
 
 @Component({
   selector: 'app-suppliers',
@@ -18,7 +17,7 @@ import { of } from 'rxjs/observable/of';
 export class SuppliersComponent implements OnInit, OnDestroy {
 
   supplierState$: Observable<Supplier | undefined>;
-  supplierEditState$: Observable<OfficeEdit>;
+  supplierEditState$: Observable<OfficeForm | undefined>;
   sub: Subscription;
   index: number;
 
@@ -27,33 +26,39 @@ export class SuppliersComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     /* sets up a subscription to activated route.
-      uses the id paramater to extract specific supplier for
+      uses the id parameter to extract specific supplier for
       use in the component */
     this.sub = this.route.params.subscribe((data) => {
       this.supplierState$ = this.store.select('suppliers').map((state) => {
-        const supplier: Supplier = state.suppliers.find(element => element.id === data.id);
+        const supplier: Supplier | undefined = state.suppliers.find(element => element.id === data.id);
+        if (typeof supplier === 'undefined') {
+          return supplier;
+        }
         const index: number = state.suppliers.indexOf(supplier);
         this.index = index;
         return supplier;
       });
       this.supplierEditState$ = this.store.select('suppliers').map((state) => {
-        const supplierEdit: OfficeEdit = state.suppliersEdit.find(element => element.id === data.id);
+        const supplierEdit: OfficeForm | undefined = state.suppliersEdit.find(element => element.id === data.id);
+        if (typeof supplierEdit === 'undefined') {
+          return supplierEdit;
+        }
         return supplierEdit;
       });
     });
   }
 
-  edit(supplierEdit: OfficeEdit) {
+  edit(supplierEdit: OfficeForm) {
     this.store.dispatch(new fromTabs.NewTab({name: supplierEdit.name, id: supplierEdit.id}));
     this.store.dispatch(new fromSuppliers.SetEditMode(supplierEdit));
   }
 
-  updateEditingSupplier(supplierEdit: OfficeEdit) {
+  updateEditingSupplier(supplierEdit: OfficeForm) {
     this.store.dispatch(new fromSuppliers.UpdateSupplierEdit(supplierEdit));
   }
 
-  save(form: any) {
-    console.log(form);
+  save(supplier: Supplier) {
+    this.store.dispatch(new fromSuppliers.UpdateSupplier(supplier));
   }
 
   cancel(id: string) {

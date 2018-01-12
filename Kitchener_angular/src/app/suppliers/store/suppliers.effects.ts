@@ -18,4 +18,11 @@ export class SupplierEffects {
         payload: supplierArray
       };
     });
+
+    @Effect({dispatch: false}) updateSupplier$ = this.actions$
+      .ofType(fromSupplierActions.UPDATE_SUPPLIER)
+      .take(1)
+      .map((payload) => {
+        console.log(payload);
+      });
 }

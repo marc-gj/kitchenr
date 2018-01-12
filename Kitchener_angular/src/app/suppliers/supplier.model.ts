@@ -11,16 +11,16 @@ export class Supplier {
   protected _state: { editMode: boolean } = { editMode: false };
 
   constructor(args: {
-    name: string,
-    _id: string,
-    contact: Contact,
-    salesReps: [{
-      _id: string,
-      firstName: string,
-      lastName: string,
-      contact: Contact
-    }]
-  }) {
+                      name: string,
+                      _id: string,
+                      contact: Contact,
+                      salesReps: [{
+                        _id: string,
+                        firstName: string,
+                        lastName: string,
+                        contact: Contact
+                      }]
+                    }) {
     this.name = args.name;
     this.id = args._id;
     this.contact = args.contact;
