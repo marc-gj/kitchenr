@@ -32,6 +32,7 @@ export class CloseInactiveTab implements Action {
 
 export class CloseTempTab implements Action {
   readonly type = CLOSE_TEMP_TAB;
+  constructor(public payload: null) {}
 }
 
 export class TryCloseTab implements Action {

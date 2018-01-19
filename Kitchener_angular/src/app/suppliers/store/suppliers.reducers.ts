@@ -14,42 +14,46 @@ Therefore this reducer is used to call methods on the supplier class to make cha
 State is returned as the reducer expects it. */
 export function suppliersReducer(state = initialState, action: fromSupplierActions.SupplierActions): State {
   switch (action.type) {
-    case fromSupplierActions.SET_SUPPLIERS_FROM_SERVER:
+    case fromSupplierActions.SET_SUPPLIERS_FROM_SERVER: {
       return {
         ...state,
         suppliers: [...action.payload]
       };
-      case fromSupplierActions.SET_EDIT_MODE:
-      let supplier: Supplier | undefined = state.suppliers.find(element => element.id === action.payload.id);
-      if (typeof supplier === 'undefined') {
+    }
+      case fromSupplierActions.SET_EDIT_MODE: {
+        const supplier: Supplier | undefined = state.suppliers.find(element => element.id === action.payload.id);
+        if (typeof supplier === 'undefined') {
+          return {
+            ...state
+          };
+        }
+        supplier.state.editMode = true;
         return {
-          ...state
+          ...state,
+          suppliersEdit: [...state.suppliersEdit, action.payload]
         };
       }
-      supplier.state.editMode = true;
-      return {
-        ...state,
-        suppliersEdit: [...state.suppliersEdit, action.payload]
-      };
-      case fromSupplierActions.CANCEL_EDIT:
-      supplier = state.suppliers.find(element => element.id === action.payload);
-      if (typeof supplier === 'undefined') {
+      case fromSupplierActions.CANCEL_EDIT: {
+        const supplier = state.suppliers.find(element => element.id === action.payload);
+        if (typeof supplier === 'undefined') {
+          return {
+            ...state
+          };
+        }
+        supplier.state.editMode = false;
+        const supplierEditArray: OfficeForm[] = state.suppliersEdit.filter(element => element.id !== action.payload);
         return {
-          ...state
+          ...state,
+          suppliersEdit: [...supplierEditArray]
         };
       }
-      supplier.state.editMode = false;
-      let supplierEditArray: OfficeForm[] = state.suppliersEdit.filter(element => element.id !== action.payload);
-      return {
-        ...state,
-        suppliersEdit: [...supplierEditArray]
-      };
-      case fromSupplierActions.UPDATE_SUPPLIER_EDIT:
-      supplierEditArray = state.suppliersEdit.filter(element => element.id !== action.payload.id);
-      return {
-        ...state,
-        suppliersEdit: [...supplierEditArray, action.payload]
-      };
+      case fromSupplierActions.UPDATE_SUPPLIER_EDIT: {
+        const supplierEditArray = state.suppliersEdit.filter(element => element.id !== action.payload.id);
+        return {
+          ...state,
+          suppliersEdit: [...supplierEditArray, action.payload]
+        };
+      }
     default:
       return state;
   }

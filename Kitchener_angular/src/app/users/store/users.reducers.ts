@@ -9,9 +9,11 @@ const initialState: State = {users: [User.make({username: 'Marc', email: 'marc-g
 
 export function usersReducer(state = initialState, action: UserActions.UserActions): State {
   switch (action.type) {
-    case UserActions.ADD_USER:
+    case UserActions.ADD_USER: {
       return {...state, users: [action.payload]};
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }
