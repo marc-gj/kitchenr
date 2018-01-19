@@ -5,7 +5,7 @@ export interface State {
   users: User[];
 }
 
-const initialState: State = {users: [new User('Marc', 'marc-gj@live.com', 'password')]};
+const initialState: State = {users: [User.make({username: 'Marc', email: 'marc-gj@live.com', password: 'password'})]};
 
 export function usersReducer(state = initialState, action: UserActions.UserActions): State {
   switch (action.type) {

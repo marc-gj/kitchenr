@@ -5,6 +5,7 @@
     "backend",
     "datastorage",
     "deletesupplier",
+    "devtools",
     "getallsuppliers",
     "getsupplierdetails",
     "hadco",

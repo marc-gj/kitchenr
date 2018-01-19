@@ -9,12 +9,12 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
-	declarations: [
-		UsersComponent,
-		UserProfileComponent,
-		SignInComponent
-	],
-	imports: [CommonModule, ReactiveFormsModule, MaterialModule, FlexLayoutModule]
+  declarations: [
+    UsersComponent,
+    UserProfileComponent,
+    SignInComponent
+  ],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule, FlexLayoutModule]
 })
 
-export class UsersModule {}
+export class UsersModule { }

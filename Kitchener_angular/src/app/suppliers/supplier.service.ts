@@ -6,6 +6,8 @@ import { of } from 'rxjs/observable/of';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from '../messages/message.service';
 import * as serverSettings from '../shared/server.settings';
+import { Contact } from '../shared/contact.model';
+import { SalesRep } from './sales-rep.model';
 
 
 @Injectable()
@@ -17,7 +19,31 @@ export class SupplierService {
   }
 
   loadDataFromServer(): Observable<Supplier[]> {
-    return this.httpClient.get<Supplier[]>(serverSettings.API_ROOT + serverSettings.GET_ALL_SUPPLIERS_FRAGMENT)
+    return this.httpClient.get<[{
+      name: string,
+      _id: string,
+      contact: Contact,
+      salesReps: [{
+        _id: string,
+        firstName: string,
+        lastName: string,
+        contact: Contact
+      }]
+    }]>(serverSettings.API_ROOT + serverSettings.GET_ALL_SUPPLIERS_FRAGMENT)
+    .map((suppliersAPI) => {
+      const supplierArray: Supplier[] = suppliersAPI.map((supplierAPI) => {
+        let salesRep: SalesRep;
+        if (supplierAPI.salesReps[0]) {
+          salesRep = SalesRep.make(supplierAPI.salesReps[0]);
+        } else {
+          salesRep = SalesRep.default();
+        }
+        const supplier = {...supplierAPI, salesReps: [salesRep]};
+        console.log(Supplier.make(supplier));
+        return Supplier.make(supplier);
+      });
+      return supplierArray;
+    })
     .pipe(
       tap(res => console.log(res),
       catchError(this.handleError<any>(`signInWithUsernameAndPassword`))

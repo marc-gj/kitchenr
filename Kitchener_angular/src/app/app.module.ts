@@ -15,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 import { AppComponent } from './app.component';
@@ -67,7 +68,10 @@ import { TabsEffects } from './list-area/tabs/store/tabs.effects';
     FlexLayoutModule,
     MatTabsModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, DataStorageEffects, SupplierEffects, TabsEffects])
+    EffectsModule.forRoot([AuthEffects, DataStorageEffects, SupplierEffects, TabsEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 // Retains last 25 states
+    })
   ],
   providers: [
     SupplierService,
