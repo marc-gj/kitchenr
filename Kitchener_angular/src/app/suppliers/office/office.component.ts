@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 import { Supplier } from '../supplier.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
+
+
+// change all instances of officeform back to the supplier model as class instances are no longer utilized.
 export interface OfficeForm {
   id: string;
   name: string;
@@ -27,8 +30,8 @@ export class OfficeComponent implements OnInit, OnChanges {
   constructor() {
     this.officeForm = new FormGroup({
       'address': new FormControl(null, [Validators.required]),
-      'telephone': new FormControl(null, [Validators.required]),
-      'fax': new FormControl(null),
+      'telephone': new FormControl([null], [Validators.required]),
+      'fax': new FormControl([null]),
       'email': new FormControl(null, [Validators.required])
     });
     this.officeForm.disable();
@@ -48,12 +51,14 @@ export class OfficeComponent implements OnInit, OnChanges {
     this.update.emit(supplierEdit);
   }
   onEdit() {
+    console.log(this.officeForm.value);
     const supplierEdit: OfficeForm = { ...this.officeForm.value, id: this.supplier.id, name: this.supplier.name };
     this.edit.emit(supplierEdit);
     this.setForm();
   }
   onSave() {
-    this.save.emit(this.officeForm.value);
+    const supplier: Supplier = { ...this.supplier, contact: { ...this.officeForm.value }, state: { editMode: false } };
+    this.save.emit(supplier);
     this.setForm();
   }
   onCancel() {
@@ -69,12 +74,12 @@ export class OfficeComponent implements OnInit, OnChanges {
         this.officeForm.patchValue({ address: null});
       }
       if (this.supplier.contact.telephone) {
-        this.officeForm.patchValue({ telephone: this.supplier.contact.telephone[0] });
+        this.officeForm.patchValue({ telephone: [this.supplier.contact.telephone] });
       } else {
         this.officeForm.patchValue({ telephone: null});
       }
       if (this.supplier.contact.fax) {
-        this.officeForm.patchValue({ fax: this.supplier.contact.fax[0] });
+        this.officeForm.patchValue({ fax: this.supplier.contact.fax });
       } else {
         this.officeForm.patchValue({ fax: null});
       }
@@ -87,7 +92,7 @@ export class OfficeComponent implements OnInit, OnChanges {
       this.officeForm.enable();
       if (this.supplierEdit) {
         this.officeForm.patchValue({ address: this.supplierEdit.address });
-        this.officeForm.patchValue({ telephone: this.supplierEdit.telephone });
+        this.officeForm.patchValue({ telephone: [this.supplierEdit.telephone] });
         this.officeForm.patchValue({ fax: this.supplierEdit.fax });
         this.officeForm.patchValue({ email: this.supplierEdit.email });
       }

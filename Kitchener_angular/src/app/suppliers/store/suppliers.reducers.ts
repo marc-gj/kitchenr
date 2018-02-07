@@ -54,6 +54,15 @@ export function suppliersReducer(state = initialState, action: fromSupplierActio
           suppliersEdit: [...supplierEditArray, action.payload]
         };
       }
+      case fromSupplierActions.UPDATE_SUPPLIER: {
+        const supplierArray = state.suppliers.filter(element => element.id !== action.payload.id);
+        const supplierEditArray = state.suppliersEdit.filter(element => element.id !== action.payload.id);
+        return {
+          ...state,
+          suppliers: [...supplierArray, action.payload],
+          suppliersEdit: [...supplierEditArray]
+        };
+      }
     default:
       return state;
   }

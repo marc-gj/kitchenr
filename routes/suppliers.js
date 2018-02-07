@@ -108,7 +108,7 @@ router.post('/supplier', passport.authenticate('jwt', { session: false }), (req,
   });
 });
 
-router.get('/suppliers', (req, res) => {
+router.get('/suppliers', passport.authenticate('jwt', { session: false }), (req, res) => {
   Supplier.getAllSuppliers().then(suppliers => {
     res.json(suppliers);
   });
@@ -143,7 +143,7 @@ router.delete('/supplier', passport.authenticate('jwt', { session: false }), (re
 router.patch('/supplier', passport.authenticate('jwt', { session: false }), (req, res) => {
   let updatesupplier = req.body;
 
-  Supplier.updateSupplierItem(updatesupplier._id, updatesupplier, (err) => {
+  Supplier.updateSupplierItem(updatesupplier.id, updatesupplier, (err) => {
     if (err) {
       console.log(err);
       res.json({
@@ -153,7 +153,7 @@ router.patch('/supplier', passport.authenticate('jwt', { session: false }), (req
     } else {
       res.json({
         success: true,
-        msg: 'supplier updated successfully!'
+        msg: 'supplier updated successfully!',
       });
     }
   });

@@ -9,7 +9,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <app-office 
+        <app-office
           [supplier]="(supplierState$ | async)"
           [supplierEdit]="(supplierEditState$ | async)"
           [index]="index"
@@ -23,13 +23,13 @@
     </div>
 
     <div class="padding">
-      <mat-expansion-panel [expanded]="(supplierState$ | async).salesReps[0] ? true : false"> 
+      <mat-expansion-panel [expanded]="(supplierState$ | async).salesReps[0] ? true : false">
 
         <mat-expansion-panel-header>
           <mat-panel-title>Sales representative</mat-panel-title>
         </mat-expansion-panel-header>
 
-        <app-sales-rep 
+        <app-sales-rep
           *ngIf="(supplierState$ | async).salesReps[0]"
           [supplier]="(supplierState$ | async)"
           ></app-sales-rep>
@@ -52,7 +52,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             Paid Invoices
-          </mat-panel-title> 
+          </mat-panel-title>
         </mat-expansion-panel-header>
         <app-form-actions></app-form-actions>
       </mat-expansion-panel>
