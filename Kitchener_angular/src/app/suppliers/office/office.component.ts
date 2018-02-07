@@ -26,7 +26,7 @@ export class OfficeComponent implements OnInit, OnChanges {
   @Output() edit = new EventEmitter<OfficeForm>();
   @Output() save = new EventEmitter<Supplier>();
   @Output() cancel = new EventEmitter<string>();
-  private officeForm: FormGroup;
+  protected officeForm: FormGroup;
   constructor() {
     this.officeForm = new FormGroup({
       'address': new FormControl(null, [Validators.required]),

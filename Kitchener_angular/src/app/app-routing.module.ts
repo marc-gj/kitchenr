@@ -11,6 +11,7 @@ import { ListAreaComponent } from './list-area/list-area.component';
 import { CoreResolver } from './core/core.resolver';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { UrlSegment } from './shared/urlSegments';
+import { NewSupplierComponent } from './suppliers/new-supplier/new-supplier.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
         { path: ':id', component: StockComponent }
       ] },
       { path: 'suppliers', component: ListAreaComponent, data: {page: UrlSegment.suppliers}, children: [
+        { path: 'new-supplier', component: NewSupplierComponent },
         { path: ':id', component: SuppliersComponent }
       ]},
       { path: 'ingredients', component: ListAreaComponent, data: {page: 'ingredients'} , children: [

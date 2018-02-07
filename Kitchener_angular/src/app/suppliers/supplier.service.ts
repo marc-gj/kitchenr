@@ -46,7 +46,7 @@ export class SupplierService {
     })
     .pipe(
       tap(res => console.log(res),
-      catchError(this.handleError<any>(`signInWithUsernameAndPassword`))
+      catchError(this.handleError<any>(`loadDataFromServer`))
     ));
   }
 

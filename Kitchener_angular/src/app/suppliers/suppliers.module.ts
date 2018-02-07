@@ -6,13 +6,15 @@ import { SuppliersComponent } from './suppliers.component';
 import { OfficeComponent } from './office/office.component';
 import { FormActionsComponent } from '../shared/form-actions/form-actions.component';
 import { SalesRepComponent } from './sales-rep/sales-rep.component';
+import { NewSupplierComponent } from './new-supplier/new-supplier.component';
 
 @NgModule({
   declarations: [
     SuppliersComponent,
     OfficeComponent,
     SalesRepComponent,
-    FormActionsComponent
+    FormActionsComponent,
+    NewSupplierComponent
   ],
   imports: [
     CommonModule,

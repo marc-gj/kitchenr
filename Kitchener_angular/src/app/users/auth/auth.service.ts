@@ -66,7 +66,7 @@ export class AuthService {
 
 
   private log(message: string): void {
-    this.messageService.add('Supplier Service: ' + message);
+    this.messageService.add('Auth Service: ' + message);
   }
 
   /**
