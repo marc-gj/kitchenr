@@ -3,45 +3,47 @@ const bcrypt = require('bcryptjs');
 // const config = require('../config/database');
 // User Schema
 
-const UserSchema = mongoose.Schema({
-	/* name: {
+const UserSchema = mongoose.Schema(
+  {
+    /* name: {
 		type: String
 	}, */
-  email: {
-    type: String,
-    required: true,
-    unique: true
+    email: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true
+    }
   },
-  username: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  }
-},
-  { timestamps: true });
+  { timestamps: true }
+);
 
-const User = module.exports = mongoose.model('User', UserSchema);
+const User = (module.exports = mongoose.model('User', UserSchema));
 
-module.exports.getUserById = function (id, callback) {
+module.exports.getUserById = function(id, callback) {
   User.findById(id, callback);
   //console.log(id);
 };
 
-module.exports.getUserByUsername = function (username, callback) {
+module.exports.getUserByUsername = function(username, callback) {
   const query = { username: username };
   User.findOne(query, callback);
 };
 
-module.exports.getUserByEmail = function (email, callback) {
+module.exports.getUserByEmail = function(email, callback) {
   const query = { email: email };
   User.findOne(query, callback);
 };
 
-module.exports.addUser = function (newUser, callback) {
+module.exports.addUser = function(newUser, callback) {
   //console.log(newUser);
   bcrypt.genSalt(10, (err, salt) => {
     //console.log(salt);
@@ -54,8 +56,9 @@ module.exports.addUser = function (newUser, callback) {
   });
 };
 
-module.exports.comparePassword = function (candidatePassword, hash, callback) {
-  if (candidatePassword) { //server crashes if password is undefined
+module.exports.comparePassword = function(candidatePassword, hash, callback) {
+  if (candidatePassword) {
+    //server crashes if password is undefined
     //console.log(candidatePassword);
     //console.log(hash);
     bcrypt.compare(candidatePassword, hash, (err, isMatch) => {

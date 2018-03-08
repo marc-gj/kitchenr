@@ -57,9 +57,7 @@ export class ListAreaComponent implements OnInit, OnDestroy {
     const thisArray: Supplier[] = [];
     if (term.length >= 1) {
       array.forEach(item => {
-        const match = Supplier.searchArray(item).includes(
-          term.toLocaleLowerCase()
-        );
+        const match = Supplier.searchArray(item).includes(term.toLocaleLowerCase());
         if (match === true) {
           thisArray.push(item);
         }

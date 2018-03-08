@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const config = require('../config/database');
+require('jsonwebtoken');
 const Supplier = require('../models/supplier');
 const SalesRep = require('../models/salesrep');
 const mongoose = require('mongoose');
@@ -145,7 +144,7 @@ router.patch('/supplier', passport.authenticate('jwt', { session: false }), (req
 
   Supplier.updateSupplierItem(updatesupplier.id, updatesupplier, (err) => {
     if (err) {
-      console.log(err);
+      //console.log(err);
       res.json({
         success: false,
         msg: 'Failed to update supplier.'
