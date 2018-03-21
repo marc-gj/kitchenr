@@ -19,14 +19,14 @@
     "jsonwebtoken": "^7.4.3",
     "mongoose": "^4.13.9",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
-    "typescript": "^2.6.2"
+    "passport-jwt": "^2.2.1"
   },
   "devDependencies": {
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "typescript": "2.6.2"
   }
 }
